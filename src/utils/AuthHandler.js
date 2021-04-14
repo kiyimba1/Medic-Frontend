@@ -1,6 +1,6 @@
 import axios from "axios";
 import { reactLocalStorage } from "reactjs-localstorage";
-import Config from "./config";
+import Config from "./Config";
 
 class AuthHandler {
     static login(username, password, callback) {

@@ -9,6 +9,7 @@ export class MainComponent extends Component {
     state = {
         bodyClass: "theme-red ls-closed",
         displayOverlay: "none",
+        width: window.screen.width,
     };
     onBarClick = () => {
         if (this.state.bodyClass == "theme-red ls-closed overlay-open") {
@@ -19,8 +20,21 @@ export class MainComponent extends Component {
             this.setState({ displayOverlay: "block" })
         }
     }
+
+    onscreenresize = () => {
+        this.state.setState({ width: window.screen.width });
+    }
+
+    componentWillMount() {
+        window.addEventListener("resize", this.onscreenresize)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("resize", this.onscreenresize)
+    }
+
     render() {
-        if (window.screen.width > 1150) {
+        if (this.state.width > 1150) {
             document.getElementById("root").className = "theme-red"
         } else {
             document.getElementById("root").className = this.state.bodyClass;
@@ -51,7 +65,7 @@ export class MainComponent extends Component {
 
                 <Overlay display={this.state.displayOverlay} />
                 <Navbar onBarClick={this.onBarClick} />
-                <Sidebar />
+                <Sidebar activepage={this.props.activepage} />
                 <>{this.props.page}</>
             </React.Fragment>
         )

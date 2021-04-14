@@ -5,7 +5,7 @@ import 'adminbsb-materialdesign/plugins/animate-css/animate.css'
 import 'adminbsb-materialdesign/css/style.css'
 import GoogleFontLoader from 'react-google-font-loader'
 import AuthHandler from '../utils/AuthHandler'
-import Config from '../utils/config'
+import Config from '../utils/Config'
 import { Redirect } from 'react-router'
 
 

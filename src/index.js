@@ -17,8 +17,8 @@ ReactDOM.render(
         <Switch>
 
             <Route exact path="/logout" component={LogoutComponent}></Route>
-            <PrivateRouteNew exact path="/home" page={<HomeComponent />}></PrivateRouteNew>
-            <PrivateRouteNew exact path="/company" page={<CompanyComponent />}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/home" activepage="0" page={<HomeComponent />}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/company" activepage="1" page={<CompanyComponent />}></PrivateRouteNew>
             <Route exact path="/" component={Login}></Route>
         </Switch>
     </Router>

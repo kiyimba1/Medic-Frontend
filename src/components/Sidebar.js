@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import usericon from 'adminbsb-materialdesign/images/user.png'
 import { Link } from 'react-router-dom'
+import Config from '../utils/Config'
 
 export class Sidebar extends Component {
     state = {
@@ -76,18 +77,18 @@ export class Sidebar extends Component {
                         <div className="slimScrollDiv" style={{ position: "relative", overflow: "hidden", width: "auto" }}>
                             <ul className="list" style={{ overflow: "hidden", width: "auto" }}>
                                 <li className="header">MAIN NAVIGATION</li>
-                                <li>
-                                    <Link to="/" className=" waves-effect waves-block active">
-                                        <i className="material-icons col-light-blue">home</i>
-                                        <span>Home</span>
-                                    </Link>
-                                </li>
-                                <li>
-                                    <Link to="/company" className=" waves-effect waves-block">
-                                        <i className="material-icons col-light-blue">donut_large</i>
-                                        <span>Company</span>
-                                    </Link>
-                                </li>
+
+                                {Config.sidebarItem.map(
+                                    (item) => (
+                                        <li key={item.index} className={item.index === this.props.activepage ? 'active' : ''}>
+                                            <Link to={item.url} className=" waves-effect waves-block">
+                                                <i className="material-icons col-light-blue">{item.icon}</i>
+                                                <span>{item.title}</span>
+                                            </Link>
+                                        </li>
+                                    )
+                                )}
+
                             </ul>
                             <div className="slimScrollBar" style={{ background: "rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%", width: "4px", position: "absolute", top: "-30px", opacity: "0.4", display: "none", borderRadius: "0px", zIndex: "99", right: "1px", height: "30px" }}>
                             </div>
@@ -98,7 +99,7 @@ export class Sidebar extends Component {
 
                     <div className="legal">
                         <div className="copyright">
-                            © 2020 - 2021 <a href="javascript:void(0);">SandBox</a>.
+                            © 2020 - 2021 <a href="#">SandBox</a>.
                         </div>
                         <div className="version">
                             <b>Version: </b> 1.0.5
