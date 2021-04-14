@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import usericon from 'adminbsb-materialdesign/images/user.png'
+import { Link } from 'react-router-dom'
 
 export class Sidebar extends Component {
     state = {
@@ -8,7 +9,8 @@ export class Sidebar extends Component {
 
     constructor(props) {
         super(props)
-        this.divref = React.createRef
+        this.divref = React.createRef();
+        this.divref2 = React.createRef();
     }
 
     componentWillMount() {
@@ -21,7 +23,7 @@ export class Sidebar extends Component {
 
     handelMouseClick = (event) => {
         console.log("ok")
-        if (event.target == this.divref.current) {
+        if (event.target === this.divref.current || event.target === this.divref2.current) {
             return;
         } else {
             this.setState({ defaultClass: "btn-group user-helper-dropdown" })
@@ -61,10 +63,10 @@ export class Sidebar extends Component {
                                 </i>
                                 <ul className="dropdown-menu pull-right">
                                     <li>
-                                        <a href="javascript:void(0);" className="waves-effect waves-block">
+                                        <Link to="/logout" className="waves-effect waves-block" ref={this.divref2}>
                                             <i className="material-icons">input</i>
                                             Sign Out
-                                        </a>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>
@@ -75,10 +77,16 @@ export class Sidebar extends Component {
                             <ul className="list" style={{ overflow: "hidden", width: "auto" }}>
                                 <li className="header">MAIN NAVIGATION</li>
                                 <li>
-                                    <a href="javascript:void(0);" className=" waves-effect waves-block">
+                                    <Link to="/" className=" waves-effect waves-block active">
+                                        <i className="material-icons col-light-blue">home</i>
+                                        <span>Home</span>
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link to="/company" className=" waves-effect waves-block">
                                         <i className="material-icons col-light-blue">donut_large</i>
-                                        <span>Information</span>
-                                    </a>
+                                        <span>Company</span>
+                                    </Link>
                                 </li>
                             </ul>
                             <div className="slimScrollBar" style={{ background: "rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%", width: "4px", position: "absolute", top: "-30px", opacity: "0.4", display: "none", borderRadius: "0px", zIndex: "99", right: "1px", height: "30px" }}>

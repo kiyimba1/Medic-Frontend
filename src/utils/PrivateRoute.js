@@ -1,12 +1,18 @@
-import React, { Component } from 'react';
-import { Redirect, Route } from 'react-router';
-import AuthHandler from './AuthHandler';
+
+import React, { Component } from "react";
+import { Route, Redirect } from "react-router-dom";
+import AuthHandler from "./AuthHandler";
 
 export var PrivateRoute = ({ component: Component, ...rest }) => {
-    console.log({ ...rest })
+    console.log({ ...rest });
+    console.log(rest);
+
     return (
         <Route
             {...rest}
-            render={(props) => AuthHandler.loggedIn() ? (<Component {...props} />) : <Redirect to='/' />}
-        />)
-}
+            render={(props) =>
+                AuthHandler.loggedIn() ? <Component {...props} /> : <Redirect to="/" />
+            }
+        />
+    );
+};

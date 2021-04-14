@@ -1,16 +1,25 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
-import MainComponent from './components/MainComponent'
-
+import CompanyComponent from './pages/CompanyComponent'
+import LogoutComponent from './pages/LogoutComponent'
+import { PrivateRouteNew } from './utils/PrivateRouteNew'
 import Login from './pages/Login'
-import { PrivateRoute } from './utils/PrivateRoute'
+
+import HomeComponent from './pages/HomeComponent'
+
+
+
+
 
 ReactDOM.render(
     <Router>
         <Switch>
+
+            <Route exact path="/logout" component={LogoutComponent}></Route>
+            <PrivateRouteNew exact path="/home" page={<HomeComponent />}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/company" page={<CompanyComponent />}></PrivateRouteNew>
             <Route exact path="/" component={Login}></Route>
-            <PrivateRoute exact path="/home" component={MainComponent}></PrivateRoute>
         </Switch>
     </Router>
 

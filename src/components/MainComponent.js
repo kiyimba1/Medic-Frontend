@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import GoogleFontLoader from 'react-google-font-loader'
-import HomeComponent from './HomeComponent'
 import Navbar from './Navbar'
 import Overlay from './Overlay'
 import Sidebar from './Sidebar'
@@ -53,7 +52,7 @@ export class MainComponent extends Component {
                 <Overlay display={this.state.displayOverlay} />
                 <Navbar onBarClick={this.onBarClick} />
                 <Sidebar />
-                <HomeComponent />
+                <>{this.props.page}</>
             </React.Fragment>
         )
     }
