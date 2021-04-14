@@ -9,14 +9,22 @@ class AuthHandler {
                 if (response.status === 200) {
                     reactLocalStorage.set("token", response.data.access)
                     reactLocalStorage.set("refresh", response.data.refresh)
-                    callback({error:false, message:"Login Successful......."})
+                    callback({ error: false, message: "Login Successful......." })
                 }
             })
             .catch((error) => {
-            
-                callback({error:true,message:"Error during Login......."})
+
+                callback({ error: true, message: "Error during Login......." })
             }
             );
+    }
+
+    static loggedIn() {
+        if (reactLocalStorage.get("token") && reactLocalStorage.get("refresh")) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
 

@@ -24,15 +24,15 @@ export class Sidebar extends Component {
         if (event.target == this.divref.current) {
             return;
         } else {
-            this.setState({ defaultStatus: "btn-group user-helper-dropdown" })
+            this.setState({ defaultClass: "btn-group user-helper-dropdown" })
         }
     }
 
     showLogoutMenu = () => {
-        if (this.state.defaultClass == "btn-group user-helper-dropdown") {
-            this.setState({ defaultStatus: "btn-group user-helper-dropdown open" })
+        if (this.state.defaultClass === "btn-group user-helper-dropdown") {
+            this.setState({ defaultClass: "btn-group user-helper-dropdown open" })
         } else {
-            this.setState({ defaultStatus: "btn-group user-helper-dropdown" })
+            this.setState({ defaultClass: "btn-group user-helper-dropdown" });
         }
     }
 
@@ -54,7 +54,7 @@ export class Sidebar extends Component {
                                     data-toggle="dropdown"
                                     aria-haspopup="true"
                                     aria-expanded="true"
-                                    onClick={this.showLogoutMenu}
+                                    onClick={() => this.showLogoutMenu()}
                                     ref={this.divref}
                                 >
                                     keyboard_arrow_down
@@ -71,13 +71,13 @@ export class Sidebar extends Component {
                         </div>
                     </div>
                     <div className="menu">
-                        <div className="slimScrollDiv" style={{ position: "relative", overflow: "hidden", width: "auto", height: "0px" }}>
-                            <ul className="list" style={{ overflow: "hidden", width: "auto", height: "0px" }}>
+                        <div className="slimScrollDiv" style={{ position: "relative", overflow: "hidden", width: "auto" }}>
+                            <ul className="list" style={{ overflow: "hidden", width: "auto" }}>
                                 <li className="header">MAIN NAVIGATION</li>
                                 <li>
-                                    <a href="javascript:void(0);" className=" waves-effect waves-block">
-                                        <i className="material-icons col-light-blue">donut_large</i>
-                                        <span>Information</span>
+                                    <a href="javascript:void(0);" className="active waves-effect waves-block">
+                                        <i className="material-icons">home</i>
+                                        <span>Home</span>
                                     </a>
                                 </li>
                             </ul>
