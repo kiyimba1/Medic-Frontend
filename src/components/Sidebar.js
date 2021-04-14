@@ -75,9 +75,9 @@ export class Sidebar extends Component {
                             <ul className="list" style={{ overflow: "hidden", width: "auto" }}>
                                 <li className="header">MAIN NAVIGATION</li>
                                 <li>
-                                    <a href="javascript:void(0);" className="active waves-effect waves-block">
-                                        <i className="material-icons">home</i>
-                                        <span>Home</span>
+                                    <a href="javascript:void(0);" className=" waves-effect waves-block">
+                                        <i className="material-icons col-light-blue">donut_large</i>
+                                        <span>Information</span>
                                     </a>
                                 </li>
                             </ul>
