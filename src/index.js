@@ -8,6 +8,7 @@ import Login from './pages/Login'
 
 import HomeComponent from './pages/HomeComponent'
 import CompanyDetailsComponent from './pages/CompanyDetailsComponent'
+import AddCompanyBankComponent from './pages/AddCompanyBankComponent'
 
 
 
@@ -21,7 +22,7 @@ ReactDOM.render(
             <PrivateRouteNew exact path="/home" activepage="0" page={HomeComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/company" activepage="1" page={CompanyComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/companydetails/:id" activepage="1" page={CompanyDetailsComponent}></PrivateRouteNew>
-            <PrivateRouteNew exact path="/addCompanyBank" activepage="1" page={CompanyDetailsComponent}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/addCompanyBank/:id" activepage="1" page={AddCompanyBankComponent}></PrivateRouteNew>
             <Route exact path="/" component={Login}></Route>
         </Switch>
     </Router>

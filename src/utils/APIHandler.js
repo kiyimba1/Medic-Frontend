@@ -28,9 +28,17 @@ class APIHandler {
 
     }
 
+    async saveCompanyBankData(bank_account_no, ifsc_no, company_id) {
+        await this.checkLogin();
+        var response = await axios.post(Config.companyBankApiUrl, { bank_account_no: bank_account_no, ifsc_no: ifsc_no, company_id: company_id }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } });
+        return response
+        // console.log(response)
+
+    }
+
     async editCompanyData(name, license_no, address, contact_no, email, description, id) {
         await this.checkLogin();
-        var response = await axios.put(Config.companyApiUrl+""+id+"/", { name: name, license_no: license_no, address: address, contact_no: contact_no, email: email, description: description }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } });
+        var response = await axios.put(Config.companyApiUrl + "" + id + "/", { name: name, license_no: license_no, address: address, contact_no: contact_no, email: email, description: description }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } });
         return response
         // console.log(response)
 

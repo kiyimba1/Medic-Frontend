@@ -56,6 +56,10 @@ export class CompanyDetailsComponent extends Component {
         console.log(companydetails)
     }
 
+    AddCompanyBank = () => {
+        this.props.history.push("/addCompanyBank/" + this.props.match.params.id)
+    }
+
     viewCompanyDetails = () => {
         // console.log(id)
         // console.log(this.props)
@@ -156,7 +160,7 @@ export class CompanyDetailsComponent extends Component {
                                         Account Details
                                     </h2>
                                     <div className="header-dropdown m-r--5">
-                                        <button className="btn btn-info">Add Company Account</button>
+                                        <button onClick={this.AddCompanyBank} className="btn btn-info">Add Company Account</button>
                                     </div>
 
 
