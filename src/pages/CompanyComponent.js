@@ -32,6 +32,16 @@ export class CompanyComponent extends Component {
 
     }
 
+    componentDidMount() {
+        this.fetchCompanyData()
+    }
+
+    async fetchCompanyData() {
+        var apiHandler = new APIHandler();
+        var companydata = await apiHandler.fetchAllCompany()
+        console.log(companydata)
+    }
+
     render() {
         return (
             <section className="content">

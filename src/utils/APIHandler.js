@@ -5,10 +5,18 @@ import Config from "./Config";
 
 class APIHandler {
     async checkLogin() {
-        if (AuthHandler.checkTokenExpiry()) {
-            var response = await axios.post(Config.refreshApiUrl, { refresh: AuthHandler.getRefreshToken() });
+        try {
+            if (AuthHandler.checkTokenExpiry()) {
+                var response = await axios.post(Config.refreshApiUrl, { refresh: AuthHandler.getRefreshToken() });
 
-            reactLocalStorage.set("token", response.data.access)
+                reactLocalStorage.set("token", response.data.access)
+
+            }
+        }
+        catch (error) {
+            AuthHandler.logOutUser();
+            window.location = "/";
+            console.log(error)
         }
     }
 
@@ -20,7 +28,12 @@ class APIHandler {
 
     }
 
-    async fetchAllCompany()
+    async fetchAllCompany() {
+        await this.checkLogin();
+
+        var response = await axios.get(Config.companyApiUrl, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
 
 }
 
