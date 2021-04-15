@@ -1,0 +1,16 @@
+-------------------- Auto-Git Log --------------------
+		Thu Apr 15 2021 18:23:55 GMT+0300 (East Africa Time)
+------------------------------------------------------
+
+Modified files:
+* src/components/MainComponent.js
+* src/pages/CompanyComponent.js
+
+
+Created files:
+
+
+Deleted files:
+
+
+Renamed files:

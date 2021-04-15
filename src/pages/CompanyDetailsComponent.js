@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import APIHandler from '../utils/APIHandler';
 import AuthHandler from '../utils/AuthHandler'
 
-export class CompanyComponent extends Component {
+export class CompanyDetailsComponent extends Component {
     constructor(props) {
         super(props)
         this.formSubmit = this.formSubmit.bind(this)
@@ -42,13 +42,12 @@ export class CompanyComponent extends Component {
         var apiHandler = new APIHandler();
         var companydata = await apiHandler.fetchAllCompany()
         this.setState({ companyDataList: companydata.data.data })
-        // console.log(companydata)
+        console.log(companydata)
     }
 
     viewCompanyDetails = (id) => {
         // console.log(id)
         // console.log(this.props)
-        this.props.history.push("/companydetails/" + id)
     }
 
     render() {
@@ -178,4 +177,4 @@ export class CompanyComponent extends Component {
     }
 }
 
-export default CompanyComponent
+export default CompanyDetailsComponent

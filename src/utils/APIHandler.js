@@ -16,7 +16,7 @@ class APIHandler {
         catch (error) {
             AuthHandler.logOutUser();
             window.location = "/";
-            console.log(error)
+            // console.log(error)
         }
     }
 
@@ -24,7 +24,7 @@ class APIHandler {
         await this.checkLogin();
         var response = await axios.post(Config.companyApiUrl, { name: name, license_no: license_no, address: address, contact_no: contact_no, email: email, description: description }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } });
         return response
-        console.log(response)
+        // console.log(response)
 
     }
 

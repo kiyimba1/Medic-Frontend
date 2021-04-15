@@ -23,7 +23,7 @@ export class Sidebar extends Component {
     }
 
     handelMouseClick = (event) => {
-        console.log("ok")
+        // console.log("ok")
         if (event.target === this.divref.current || event.target === this.divref2.current) {
             return;
         } else {
