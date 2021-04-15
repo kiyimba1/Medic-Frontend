@@ -13,7 +13,13 @@ export class CompanyDetailsComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-        companyDataList: [],
+        companyBank: [],
+        name: "",
+        license_no: "",
+        address: "",
+        contact_no: "",
+        email: "",
+        description: "",
 
     }
 
@@ -25,7 +31,7 @@ export class CompanyDetailsComponent extends Component {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.saveCompanyData(event.target.name.value, event.target.license_no.value, event.target.address.value, event.target.contact_no.value, event.target.email.value, event.target.description.value);
+        var response = await apiHandler.editCompanyData(event.target.name.value, event.target.license_no.value, event.target.address.value, event.target.contact_no.value, event.target.email.value, event.target.description.value, this.props.match.params.id);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
@@ -35,17 +41,20 @@ export class CompanyDetailsComponent extends Component {
     }
 
     componentDidMount() {
-        this.fetchCompanyData()
+        this.fetchCompanyDetails()
     }
 
-    async fetchCompanyData() {
+    async fetchCompanyDetails() {
+
         var apiHandler = new APIHandler();
-        var companydata = await apiHandler.fetchAllCompany()
-        this.setState({ companyDataList: companydata.data.data })
-        console.log(companydata)
+        var companydetails = await apiHandler.fetchCompanyDetails(this.props.match.params.id)
+        this.setState({ companyBank: companydetails.data.data.company_bank })
+        this.setState({ name: companydetails.data.data.name, license_no: companydetails.data.data.license_no, address: companydetails.data.data.address, contact_no: companydetails.data.data.contact_no, email: companydetails.data.data.email, description: companydetails.data.data.description })
+
+        console.log(companydetails)
     }
 
-    viewCompanyDetails = (id) => {
+    viewCompanyDetails = () => {
         // console.log(id)
         // console.log(this.props)
     }
@@ -62,7 +71,7 @@ export class CompanyDetailsComponent extends Component {
                             <div className="card">
                                 <div className="header">
                                     <h2>
-                                        ADD Company
+                                        Edit Company
                                     </h2>
 
                                 </div>
@@ -71,42 +80,42 @@ export class CompanyDetailsComponent extends Component {
                                         <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="name" className="form-control" placeholder="Company Name" />
+                                                <input type="text" id="name" className="form-control" defaultValue={this.state.name} />
                                             </div>
                                         </div>
                                         <label htmlFor="license_no">License No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="license_no" className="form-control" placeholder="Enter License Number" />
+                                                <input type="text" id="license_no" className="form-control" placeholder="Enter License Number" defaultValue={this.state.license_no} />
                                             </div>
                                         </div>
                                         <label htmlFor="address">Address</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="address" className="form-control" placeholder="Enter Address" />
+                                                <input type="text" id="address" className="form-control" placeholder="Enter Address" defaultValue={this.state.address} />
                                             </div>
                                         </div>
                                         <label htmlFor="contact_no">Contact No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="contact_no" className="form-control" placeholder="Enter Contact Number" />
+                                                <input type="text" id="contact_no" className="form-control" placeholder="Enter Contact Number" defaultValue={this.state.contact_no} />
                                             </div>
                                         </div>
                                         <label htmlFor="email">Email</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email" className="form-control" placeholder="Enter Company Email" />
+                                                <input type="text" id="email" className="form-control" placeholder="Enter Company Email" defaultValue={this.state.email} />
                                             </div>
                                         </div>
                                         <label htmlFor="description">Description</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="description" className="form-control" placeholder="Enter Company Description" />
+                                                <input type="text" id="description" className="form-control" placeholder="Enter Company Description" defaultValue={this.state.description} />
                                             </div>
                                         </div>
 
                                         <br />
-                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Add Company" : "Adding Company Please Wait.."}</button>
+                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Update Company" : "Updating Company Please Wait.."}</button>
                                         <br />
                                         {this.state.errorRes == false && this.state.sendData == true ? (
                                             <div className="alert alert-success">
@@ -128,7 +137,7 @@ export class CompanyDetailsComponent extends Component {
                             <div className="card">
                                 <div className="header">
                                     <h2>
-                                        All Companies
+                                        Account Details
                                     </h2>
 
                                 </div>
@@ -137,30 +146,19 @@ export class CompanyDetailsComponent extends Component {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>NAME</th>
-                                                <th>License NO.</th>
-                                                <th>Address</th>
-                                                <th>Contact</th>
-                                                <th>Email</th>
-                                                <th>Description</th>
-                                                <th>Added On</th>
-                                                <th>Action</th>
-
+                                                <th>Account No.</th>
+                                                <th>IFC Code</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            {this.state.companyDataList.map((company) => (
+                                            {this.state.companyBank.map((company) => (
                                                 <tr key={company.id}>
                                                     <td>{company.id}</td>
-                                                    <td>{company.name}</td>
-                                                    <td>{company.license_no}</td>
-                                                    <td>{company.address}</td>
-                                                    <td>{company.contact_no}</td>
-                                                    <td>{company.email}</td>
-                                                    <td>{company.description}</td>
-                                                    <td>{new Date(company.added_on).toLocaleString()}</td>
-                                                    <td><button onClick={() => this.viewCompanyDetails(company.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
+                                                    <td>{company.bank_account_no}</td>
+                                                    <td>{company.ifsc_no}</td>
+
+                                                    <td><button type="button" className="btn btn-danger waves-effect">DELETE</button></td>
 
                                                 </tr>
                                             ))}
