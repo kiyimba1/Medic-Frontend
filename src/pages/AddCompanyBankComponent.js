@@ -13,7 +13,7 @@ export class AddCompanyBankComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-        
+
 
     }
 
@@ -31,10 +31,12 @@ export class AddCompanyBankComponent extends Component {
         this.setState({ errorRes: response.data.errorRes })
         this.setState({ errorMessage: response.data.message })
         this.setState({ sendData: true })
+        this.props.history.push("/companydetails/" + this.props.match.params.id)
+
 
     }
 
-    
+
 
 
 
