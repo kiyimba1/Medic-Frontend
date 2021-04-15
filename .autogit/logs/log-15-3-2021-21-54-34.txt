@@ -1,0 +1,21 @@
+-------------------- Auto-Git Log --------------------
+		Thu Apr 15 2021 21:54:34 GMT+0300 (East Africa Time)
+------------------------------------------------------
+
+Modified files:
+* src/index.js
+* src/pages/CompanyDetailsComponent.js
+* src/utils/APIHandler.js
+* src/utils/Config.js
+
+
+Created files:
+* .autogit/logs/log-15-3-2021-21-24-31.txt
+* src/pages/AddCompanyBankComponent.js
+
+
+Deleted files:
+* "src/pages/CompanyComponent copy.js"
+
+
+Renamed files:
