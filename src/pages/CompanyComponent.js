@@ -45,6 +45,11 @@ export class CompanyComponent extends Component {
         console.log(companydata)
     }
 
+    viewCompanyDetails = (id) => {
+        console.log(id)
+        console.log(this.props)
+    }
+
     render() {
         return (
             <section className="content">
@@ -154,8 +159,8 @@ export class CompanyComponent extends Component {
                                                     <td>{company.contact_no}</td>
                                                     <td>{company.email}</td>
                                                     <td>{company.description}</td>
-                                                    <td>{company.added_on}</td>
-                                                    <td><button type="button" className="btn btn-warning waves-effect">View</button></td>
+                                                    <td>{new Date(company.added_on).toLocaleString()}</td>
+                                                    <td><button onClick={() => this.viewCompanyDetails(company.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
 
                                                 </tr>
                                             ))}
