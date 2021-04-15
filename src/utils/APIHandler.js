@@ -13,12 +13,14 @@ class APIHandler {
     }
 
     async saveCompanyData(name, license_no, address, contact_no, email, description) {
-        this.checkLogin();
+        await this.checkLogin();
         var response = await axios.post(Config.companyApiUrl, { name: name, license_no: license_no, address: address, contact_no: contact_no, email: email, description: description }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } });
         return response
         console.log(response)
 
     }
+
+    async fetchAllCompany()
 
 }
 

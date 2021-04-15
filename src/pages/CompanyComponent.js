@@ -105,6 +105,44 @@ export class CompanyComponent extends Component {
                             </div>
                         </div>
                     </div>
+                    <div className="row clearfix">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div className="card">
+                                <div className="header">
+                                    <h2>
+                                        All Companies
+                                    </h2>
+
+                                </div>
+                                <div className="body table-responsive">
+                                    <table className="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>NAME</th>
+                                                <th>License NO.</th>
+                                                <th>Address</th>
+                                                <th>Contact</th>
+                                                <th>Email</th>
+                                                <th>Description</th>
+                                                <th>Added On</th>
+                                                <th>Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">5</th>
+                                                <td>Larry</td>
+                                                <td>Kikat</td>
+                                                <td>@lakitkat</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
         )
