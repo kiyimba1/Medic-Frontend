@@ -24,40 +24,40 @@ export class CompanyComponent extends Component {
                                 </div>
                                 <div className="body">
                                     <form>
-                                        <label htmlFor="email_address">Name</label>
+                                        <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email_address" className="form-control" placeholder="Company Name" />
+                                                <input type="text" id="name" className="form-control" placeholder="Company Name" />
                                             </div>
                                         </div>
-                                        <label htmlFor="email_address">License No.</label>
+                                        <label htmlFor="license_no">License No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email_address" className="form-control" placeholder="Enter License Number" />
+                                                <input type="text" id="license_no" className="form-control" placeholder="Enter License Number" />
                                             </div>
                                         </div>
-                                        <label htmlFor="email_address">Address</label>
+                                        <label htmlFor="address">Address</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email_address" className="form-control" placeholder="Enter Address" />
+                                                <input type="text" id="address" className="form-control" placeholder="Enter Address" />
                                             </div>
                                         </div>
-                                        <label htmlFor="email_address">Contact No.</label>
+                                        <label htmlFor="contact_no">Contact No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email_address" className="form-control" placeholder="Enter Contact Number" />
+                                                <input type="text" id="contact_no" className="form-control" placeholder="Enter Contact Number" />
                                             </div>
                                         </div>
-                                        <label htmlFor="email_address">Email</label>
+                                        <label htmlFor="email">Email</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email_address" className="form-control" placeholder="Enter Company Email" />
+                                                <input type="text" id="email" className="form-control" placeholder="Enter Company Email" />
                                             </div>
                                         </div>
-                                        <label htmlFor="email_address">Description</label>
+                                        <label htmlFor="description">Description</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="email_address" className="form-control" placeholder="Enter Company Description" />
+                                                <input type="text" id="description" className="form-control" placeholder="Enter Company Description" />
                                             </div>
                                         </div>
 

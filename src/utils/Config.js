@@ -1,7 +1,8 @@
 class Config {
-    loginUrl = "http://127.0.0.1:8000/api/gettoken/";
-    homeUrl = "/home"
-    logoutPageUrl = "logout"
+    static loginUrl = "http://127.0.0.1:8000/api/gettoken/";
+    static refreshApiUrl = "http://127.0.0.1:8000/api/refresh_token/";
+    static homeUrl = "/home"
+    static logoutPageUrl = "logout"
 
 
     static sidebarItem = [

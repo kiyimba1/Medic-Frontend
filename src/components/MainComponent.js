@@ -21,8 +21,23 @@ export class MainComponent extends Component {
         }
     }
 
+    componentDidMount() {
+        var inputall = document.querySelectorAll("input")
+        inputall.forEach((input) => {
+            input.addEventListener("focus", function () {
+                this.parentNode.className = "form-line focused"
+            });
+        });
+
+        inputall.forEach((input) => {
+            input.addEventListener("blur", function () {
+                this.parentNode.className = "form-line"
+            });
+        });
+    }
+
     onscreenresize = () => {
-        this.state.setState({ width: window.screen.width });
+        this.setState({ width: window.screen.width });
     }
 
     componentWillMount() {
