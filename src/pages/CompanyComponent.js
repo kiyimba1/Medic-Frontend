@@ -1,9 +1,35 @@
 import React, { Component } from 'react'
+import APIHandler from '../utils/APIHandler';
 import AuthHandler from '../utils/AuthHandler'
 
 export class CompanyComponent extends Component {
+    constructor(props) {
+        super(props)
+        this.formSubmit = this.formSubmit.bind(this)
+    }
+
+    state = {
+        errorRes: false,
+        errorMessage: "",
+        btnMessage: 0,
+        sendData: false,
+    }
+
     componentDidMount() {
         AuthHandler.checkTokenExpiry()
+    }
+
+    async formSubmit(event) {
+        event.preventDefault();
+        this.setState({ btnMessage: 1 })
+        var apiHandler = new APIHandler();
+        var response = await apiHandler.saveCompanyData(event.target.name.value, event.target.license_no.value, event.target.address.value, event.target.contact_no.value, event.target.email.value, event.target.description.value);
+        console.log(response);
+        this.setState({ btnMessage: 0 })
+        this.setState({ errorRes: response.data.errorRes })
+        this.setState({ errorMessage: response.data.message })
+        this.setState({ sendData: true })
+
     }
 
     render() {
@@ -23,7 +49,7 @@ export class CompanyComponent extends Component {
 
                                 </div>
                                 <div className="body">
-                                    <form>
+                                    <form onSubmit={this.formSubmit}>
                                         <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
@@ -62,7 +88,18 @@ export class CompanyComponent extends Component {
                                         </div>
 
                                         <br />
-                                        <button type="button" className="btn btn-primary m-t-15 btn-block">Add Compant</button>
+                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Add Company" : "Adding Company Please Wait.."}</button>
+                                        <br />
+                                        {this.state.errorRes == false && this.state.sendData == true ? (
+                                            <div className="alert alert-success">
+                                                {this.state.errorMessage}
+                                            </div>
+                                        ) : ""}
+                                        {this.state.errorRes == true && this.state.sendData == true ? (
+                                            <div className="alert alert-danger">
+                                                {this.state.errorMessage}
+                                            </div>
+                                        ) : ""}
                                     </form>
                                 </div>
                             </div>
