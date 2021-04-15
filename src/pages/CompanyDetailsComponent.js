@@ -20,6 +20,7 @@ export class CompanyDetailsComponent extends Component {
         contact_no: "",
         email: "",
         description: "",
+        dataLoaded: false
 
     }
 
@@ -50,6 +51,7 @@ export class CompanyDetailsComponent extends Component {
         var companydetails = await apiHandler.fetchCompanyDetails(this.props.match.params.id)
         this.setState({ companyBank: companydetails.data.data.company_bank })
         this.setState({ name: companydetails.data.data.name, license_no: companydetails.data.data.license_no, address: companydetails.data.data.address, contact_no: companydetails.data.data.contact_no, email: companydetails.data.data.email, description: companydetails.data.data.description })
+        this.setState({ dataLoaded: true })
 
         console.log(companydetails)
     }
@@ -69,6 +71,20 @@ export class CompanyDetailsComponent extends Component {
                     <div className="row clearfix">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div className="card">
+                                {this.state.dataLoaded == false ? (
+                                    <div className="text-center">
+                                        <div className="preloader pl-size-xl">
+                                            <div className="spinner-layer">
+                                                <div className="circle-clipper left">
+                                                    <div className="circle"></div>
+                                                </div>
+                                                <div className="circle-clipper right">
+                                                    <div className="circle"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                ) : ''}
                                 <div className="header">
                                     <h2>
                                         Edit Company
@@ -139,9 +155,27 @@ export class CompanyDetailsComponent extends Component {
                                     <h2>
                                         Account Details
                                     </h2>
+                                    <div className="header-dropdown m-r--5">
+                                        <button className="btn btn-info">Add Company Account</button>
+                                    </div>
+
 
                                 </div>
                                 <div className="body table-responsive">
+                                    {this.state.dataLoaded == false ? (
+                                        <div className="text-center">
+                                            <div className="preloader pl-size-xl">
+                                                <div className="spinner-layer">
+                                                    <div className="circle-clipper left">
+                                                        <div className="circle"></div>
+                                                    </div>
+                                                    <div className="circle-clipper right">
+                                                        <div className="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : ''}
                                     <table className="table table-hover">
                                         <thead>
                                             <tr>

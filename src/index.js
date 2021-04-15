@@ -21,6 +21,7 @@ ReactDOM.render(
             <PrivateRouteNew exact path="/home" activepage="0" page={HomeComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/company" activepage="1" page={CompanyComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/companydetails/:id" activepage="1" page={CompanyDetailsComponent}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/addCompanyBank" activepage="1" page={CompanyDetailsComponent}></PrivateRouteNew>
             <Route exact path="/" component={Login}></Route>
         </Switch>
     </Router>
