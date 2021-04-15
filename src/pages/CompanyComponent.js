@@ -13,6 +13,8 @@ export class CompanyComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
+        companyDataList: [],
+
     }
 
     componentDidMount() {
@@ -39,6 +41,7 @@ export class CompanyComponent extends Component {
     async fetchCompanyData() {
         var apiHandler = new APIHandler();
         var companydata = await apiHandler.fetchAllCompany()
+        this.setState({ companyDataList: companydata.data.data })
         console.log(companydata)
     }
 
@@ -141,12 +144,22 @@ export class CompanyComponent extends Component {
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">5</th>
-                                                <td>Larry</td>
-                                                <td>Kikat</td>
-                                                <td>@lakitkat</td>
-                                            </tr>
+
+                                            {this.state.companyDataList.map((company) => (
+                                                <tr key={company.id}>
+                                                    <td>{company.id}</td>
+                                                    <td>{company.name}</td>
+                                                    <td>{company.license_no}</td>
+                                                    <td>{company.address}</td>
+                                                    <td>{company.contact_no}</td>
+                                                    <td>{company.email}</td>
+                                                    <td>{company.description}</td>
+                                                    <td>{company.added_on}</td>
+                                                    <td><button type="button" className="btn btn-warning waves-effect">View</button></td>
+
+                                                </tr>
+                                            ))}
+
                                         </tbody>
                                     </table>
                                 </div>
