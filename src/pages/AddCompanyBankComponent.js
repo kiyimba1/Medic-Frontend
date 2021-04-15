@@ -13,8 +13,7 @@ export class AddCompanyBankComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-        companyDataList: [],
-        dataLoaded: false
+        
 
     }
 
@@ -26,7 +25,7 @@ export class AddCompanyBankComponent extends Component {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.saveCompanyBankData(event.target.name.value, event.target.license_no.value, event.target.address.value, event.target.contact_no.value, event.target.email.value, event.target.description.value);
+        var response = await apiHandler.saveCompanyBankData(event.target.bank_account_no.value, event.target.ifsc_no.value, this.props.match.params.id);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
@@ -35,23 +34,9 @@ export class AddCompanyBankComponent extends Component {
 
     }
 
-    componentDidMount() {
-        this.fetchCompanyData()
-    }
+    
 
-    async fetchCompanyData() {
-        var apiHandler = new APIHandler();
-        var companydata = await apiHandler.fetchAllCompany()
-        this.setState({ dataLoaded: true })
-        this.setState({ companyDataList: companydata.data.data })
-        // console.log(companydata)
-    }
 
-    viewCompanyDetails = (id) => {
-        // console.log(id)
-        // console.log(this.props)
-        this.props.history.push("/companydetails/" + id)
-    }
 
     render() {
         return (
@@ -78,10 +63,10 @@ export class AddCompanyBankComponent extends Component {
                                                 <input type="text" name="bank_account_no" className="form-control" placeholder="Company Account Number" />
                                             </div>
                                         </div>
-                                        <label htmlFor="ifcs_no">IFCS Code</label>
+                                        <label htmlFor="ifsc_no">IFCS Code</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="ifcs_no" className="form-control" placeholder="Enter IFC Number" />
+                                                <input type="text" name="ifsc_no" className="form-control" placeholder="Enter IFC Number" />
                                             </div>
                                         </div>
 
