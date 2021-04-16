@@ -17,20 +17,7 @@ export class ManageMedicineComponent extends Component {
         detaLoaded: false,
         companylist: [],
         medicinedetails: [{ salt_name: "", salt_qyt: "", salt_qyt_type: "", description: "" }],
-        name: "",
-        medical_type: "",
-        buy_price: "",
-        sell_price: "",
-        c_gst: "",
-        s_gst: "",
-        batch_no: "",
-        shelf_no: "",
-        expire_date: "",
-        mfg_date: "",
-        company_id: "",
-        description: "",
-        in_stock_total: "",
-        qty_in_strip: "",
+        selectedMedicine: {},
 
     }
 
@@ -93,9 +80,11 @@ export class ManageMedicineComponent extends Component {
     }
 
     viewMedicineDetails = (index) => {
-        console.log(this.state.medicineDataList[index])
-    }
+        // console.log(this.state.medicineDataList[index])
+        this.setState({ selectedMedicine: this.state.medicineDataList[index] })
 
+
+    }
 
 
 
@@ -158,7 +147,7 @@ export class ManageMedicineComponent extends Component {
 
 
                                             {this.state.medicineDataList.map((medicine, index) => (
-                                                <tr key={medicine.id}>
+                                                <tr key={index}>
                                                     <td>{medicine.id}</td>
                                                     <td>{medicine.name}</td>
                                                     <td>{medicine.medical_type}</td>
@@ -176,7 +165,7 @@ export class ManageMedicineComponent extends Component {
 
 
 
-                                                    <td><button onClick={(index) => this.viewMedicineDetails(medicine.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
+                                                    <td><button onClick={this.viewMedicineDetails(index)} type="button" className="btn btn-warning waves-effect">View</button></td>
 
                                                 </tr>
                                             ))}
@@ -202,61 +191,61 @@ export class ManageMedicineComponent extends Component {
                                         <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="name" id="name" className="form-control" placeholder="Enter Name" defaultValue={this.state.name} />
+                                                <input type="text" name="name" id="name" className="form-control" placeholder="Enter Name" defaultValue={this.state.selectedMedicine.name} />
                                             </div>
                                         </div>
                                         <label htmlFor="medical_type">Medical Type</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="medical_type" id="medical_type" className="form-control" placeholder="Enter Medical Type" defaultValue={this.state.medical_type} />
+                                                <input type="text" name="medical_type" id="medical_type" className="form-control" placeholder="Enter Medical Type" defaultValue={this.state.selectedMedicine.medical_type} />
                                             </div>
                                         </div>
                                         <label htmlFor="buy_price">Buy Price</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="buy_price" id="buy_price" className="form-control" placeholder="Enter Buy Price" defaultValue={this.state.buy_price} />
+                                                <input type="text" name="buy_price" id="buy_price" className="form-control" placeholder="Enter Buy Price" defaultValue={this.state.selectedMedicine.buy_price} />
                                             </div>
                                         </div>
                                         <label htmlFor="sell_price">Sell Price</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="sell_price" id="sell_price" className="form-control" placeholder="Enter Name" defaultValue={this.state.sell_price} />
+                                                <input type="text" name="sell_price" id="sell_price" className="form-control" placeholder="Enter Name" defaultValue={this.state.selectedMedicine.sell_price} />
                                             </div>
                                         </div>
                                         <label htmlFor="c_gst">C GST</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="c_gst" id="c_gst" className="form-control" placeholder="Enter CGST Code" defaultValue={this.state.c_gst} />
+                                                <input type="text" name="c_gst" id="c_gst" className="form-control" placeholder="Enter CGST Code" defaultValue={this.state.selectedMedicine.c_gst} />
                                             </div>
                                         </div>
                                         <label htmlFor="s_gst">S GST</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="s_gst" id="s_gst" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.s_gst} />
+                                                <input type="text" name="s_gst" id="s_gst" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.selectedMedicine.s_gst} />
                                             </div>
                                         </div>
                                         <label htmlFor="batch_no">Batch No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="batch_no" id="batch_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.batch_no} />
+                                                <input type="text" name="batch_no" id="batch_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.selectedMedicine.batch_no} />
                                             </div>
                                         </div>
                                         <label htmlFor="shelf_no">Shelf No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="shelf_no" id="shelf_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.shelf_no} />
+                                                <input type="text" name="shelf_no" id="shelf_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.selectedMedicine.shelf_no} />
                                             </div>
                                         </div>
                                         <label htmlFor="expire_date">Expiry Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.expire_date} />
+                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.selectedMedicine.expire_date} />
                                             </div>
                                         </div>
                                         <label htmlFor="mfg_date">Mfg Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.mfg_date} />
+                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.selectedMedicine.mfg_date} />
                                             </div>
                                         </div>
 
@@ -264,25 +253,25 @@ export class ManageMedicineComponent extends Component {
                                         <label htmlFor="description">Description</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="description" id="description" className="form-control" placeholder="Enter Description" defaultValue={this.state.description} />
+                                                <input type="text" name="description" id="description" className="form-control" placeholder="Enter Description" defaultValue={this.state.selectedMedicine.description} />
                                             </div>
                                         </div>
                                         <label htmlFor="in_stock_total">Stock in Total</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="in_stock_total" id="in_stock_total" className="form-control" placeholder="Enter Total Stock " defaultValue={this.state.in_stock_total} />
+                                                <input type="text" name="in_stock_total" id="in_stock_total" className="form-control" placeholder="Enter Total Stock " defaultValue={this.state.selectedMedicine.in_stock_total} />
                                             </div>
                                         </div>
                                         <label htmlFor="description">Qty in Strip</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="qty_in_strip" id="qty_in_strip" className="form-control" placeholder="Enter Quantity in Strip" defaultValue={this.state.qty_in_strip} />
+                                                <input type="text" name="qty_in_strip" id="qty_in_strip" className="form-control" placeholder="Enter Quantity in Strip" defaultValue={this.state.selectedMedicine.qty_in_strip} />
                                             </div>
                                         </div>
                                         <label htmlFor="company_id">Company</label>
                                         {/* <div className="form-inline">
                                             <select className="form-control" name="company_id">
-                                                {this.state.companylist.map((item) => (
+                                                {this.state.selectedMedicine.companylist.map((item) => (
                                                     <option value={item.id} key={item.id}>{item.name}</option>
                                                 ))}
                                             </select>
