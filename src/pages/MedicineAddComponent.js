@@ -45,7 +45,7 @@ export class MedicineAddComponent extends Component {
             <section className="content">
                 <div className="container-fluid">
                     <div className="block-header">
-                        <h2>Manage Company</h2>
+                        <h2>Manage Medicine</h2>
                     </div>
                     <div className="row clearfix">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -53,28 +53,100 @@ export class MedicineAddComponent extends Component {
                                 <div className="header">
 
                                     <h2>
-                                        ADD Bank For Company {this.props.match.params.id}
+                                        ADD Medicine {this.props.match.params.id}
                                     </h2>
 
                                 </div>
                                 <div className="body">
                                     <form onSubmit={this.formSubmit}>
-                                        <label htmlFor="bank_account_no">Account No.</label>
+                                        <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="bank_account_no" className="form-control" placeholder="Company Account Number" />
+                                                <input type="text" name="name" id="name" className="form-control" placeholder="Enter Name" />
                                             </div>
                                         </div>
-                                        <label htmlFor="ifsc_no">IFCS Code</label>
+                                        <label htmlFor="medical_type">Medical Type</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="ifsc_no" className="form-control" placeholder="Enter IFC Number" />
+                                                <input type="text" name="medical_type" id="medical_type" className="form-control" placeholder="Enter Medical Type" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="buy_price">Buy Price</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="buy_price" id="buy_price" className="form-control" placeholder="Enter Buy Price" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="sell_price">Sell Price</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="sell_price" id="sell_price" className="form-control" placeholder="Enter Name" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="c_gst">C GST</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="c_gst" id="c_gst" className="form-control" placeholder="Enter CGST Code" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="s_gst">S GST</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="s_gst" id="s_gst" className="form-control" placeholder="Enter S GST Code" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="batch_no">Batch No.</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="batch_no" id="batch_no" className="form-control" placeholder="Enter S GST Code" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="shelf_no">Shelf No.</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="shelf_no" id="shelf_no" className="form-control" placeholder="Enter S GST Code" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="expire_date">Expiry Date</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="Enter Exp Date" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="mfg_date">Mfg Date</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="Enter Mfg Date" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="company_id">S GST</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="company_id" id="company_id" className="form-control" placeholder="Enter Company" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="description">Description</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="description" id="description" className="form-control" placeholder="Enter Description" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="in_stock_total">Stock in Total</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="in_stock_total" id="in_stock_total" className="form-control" placeholder="Enter Total Stock " />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="description">Qty in Strip</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="qty_in_strip" id="qty_in_strip" className="form-control" placeholder="Enter Quantity in Strip" />
                                             </div>
                                         </div>
 
 
                                         <br />
-                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Add Company Bank" : "Adding Company Bank Please Wait.."}</button>
+                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Add Medicine" : "Adding Medicine Please Wait.."}</button>
                                         <br />
                                         {this.state.errorRes == false && this.state.sendData == true ? (
                                             <div className="alert alert-success">
