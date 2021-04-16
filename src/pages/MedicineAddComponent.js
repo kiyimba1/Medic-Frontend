@@ -30,7 +30,7 @@ export class MedicineAddComponent extends Component {
     }
 
     handelInput = (event) => {
-        // console.log(event.target)
+        console.log(event.target.getAttribute("data-index"))
         console.log(event.target.name)
         console.log(event.target.value)
     }
@@ -192,31 +192,31 @@ export class MedicineAddComponent extends Component {
 
                                             </div>
                                         </div>
-                                        {this.state.medicinedetails.map((item) => (
+                                        {this.state.medicinedetails.map((item, index) => (
                                             <div className="form-group row">
                                                 <div className="col-sm-3">
                                                     <label htmlFor="salt_name" > Salt name </label>
                                                     <div className="form-line">
-                                                        <input type="text" name="salt_name" id="salt_name" className="form-control" placeholder="Salt Name" onChange={this.handelInput} />
+                                                        <input type="text" name="salt_name" id="salt_name" className="form-control" placeholder="Salt Name" onChange={this.handelInput} data-index={index} />
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-3">
                                                     <label htmlFor="salt_qyt" > Salt Qty </label>
                                                     <div className="form-line">
-                                                        <input type="text" name="salt_qyt" id="salt_qyt" className="form-control" placeholder="Salt Quantity" />
+                                                        <input type="text" name="salt_qyt" id="salt_qyt" className="form-control" placeholder="Salt Quantity" onChange={this.handelInput} data-index={index} />
                                                     </div>
                                                 </div>
 
                                                 <div className="col-sm-3">
                                                     <label htmlFor="salt_qyt_type" > Salt Qty Type </label>
                                                     <div className="form-line">
-                                                        <input type="text" name="salt_qyt_type" id="salt_qyt_type" className="form-control" placeholder="Salt Quantity Type" />
+                                                        <input type="text" name="salt_qyt_type" id="salt_qyt_type" className="form-control" placeholder="Salt Quantity Type" onChange={this.handelInput} data-index={index} />
                                                     </div>
                                                 </div>
                                                 <div className="col-sm-3">
                                                     <label htmlFor="description" > Salt Description </label>
                                                     <div className="form-line">
-                                                        <input type="text" name="description" id="description" className="form-control" placeholder="Salt Description" />
+                                                        <input type="text" name="description" id="description" className="form-control" placeholder="Salt Description" onChange={this.handelInput} data-index={index} />
                                                     </div>
                                                 </div>
 
