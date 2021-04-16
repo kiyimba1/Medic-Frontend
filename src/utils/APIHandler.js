@@ -51,6 +51,13 @@ class APIHandler {
         return response
     }
 
+    async fetchCompanyOnly() {
+        await this.checkLogin();
+
+        var response = await axios.get(Config.companyOnlyApiUrl, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
     async fetchCompanyDetails(id) {
         await this.checkLogin();
 

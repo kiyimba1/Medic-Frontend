@@ -13,19 +13,28 @@ export class MedicineAddComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
+        companylist: []
 
 
     }
 
     componentDidMount() {
-        AuthHandler.checkTokenExpiry()
+        this.LoadCompany()
+    }
+
+    async LoadCompany() {
+
+        var apiHandler = new APIHandler();
+        var response = await apiHandler.fetchCompanyOnly()
+        console.log(response)
+        this.setState({ companylist: response.data })
     }
 
     async formSubmit(event) {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.saveCompanyBankData(event.target.bank_account_no.value, event.target.ifsc_no.value, this.props.match.params.id);
+        var response = await apiHandler.saveMedicineData(event.target.bank_account_no.value, event.target.ifsc_no.value, this.props.match.params.id);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
@@ -119,12 +128,8 @@ export class MedicineAddComponent extends Component {
                                                 <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="Enter Mfg Date" />
                                             </div>
                                         </div>
-                                        <label htmlFor="company_id">S GST</label>
-                                        <div className="form-group">
-                                            <div className="form-line">
-                                                <input type="text" name="company_id" id="company_id" className="form-control" placeholder="Enter Company" />
-                                            </div>
-                                        </div>
+
+
                                         <label htmlFor="description">Description</label>
                                         <div className="form-group">
                                             <div className="form-line">
@@ -142,6 +147,14 @@ export class MedicineAddComponent extends Component {
                                             <div className="form-line">
                                                 <input type="text" name="qty_in_strip" id="qty_in_strip" className="form-control" placeholder="Enter Quantity in Strip" />
                                             </div>
+                                        </div>
+                                        <label htmlFor="company_id">Company</label>
+                                        <div className="form-inline">
+                                            <select className="form-control">
+                                                {this.state.companylist.map((item) => (
+                                                    <option value={item.id} key={item.id}>{item.name}</option>
+                                                ))}
+                                            </select>
                                         </div>
 
 
