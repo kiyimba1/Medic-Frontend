@@ -13,9 +13,8 @@ export class MedicineAddComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-        companylist: []
-
-
+        companylist: [],
+        medicinedetails: [{ salt_name: "", salt_qyt: "", salt_qyt_type: "", description: "" }]
     }
 
     componentDidMount() {
@@ -28,6 +27,12 @@ export class MedicineAddComponent extends Component {
         var response = await apiHandler.fetchCompanyOnly()
         // console.log(response)
         this.setState({ companylist: response.data })
+    }
+
+    handelInput = (event) => {
+        // console.log(event.target)
+        console.log(event.target.name)
+        console.log(event.target.value)
     }
 
     async formSubmit(event) {
@@ -43,6 +48,26 @@ export class MedicineAddComponent extends Component {
         // this.props.history.push("/companydetails/" + this.props.match.params.id)
 
 
+    }
+
+    removeItems = () => {
+        if (this.state.medicinedetails.length != 1) {
+            this.state.medicinedetails.pop(this.state.medicinedetails.length - 1);
+        }
+        this.setState({});
+
+    }
+
+    addItems = () => {
+        var item = {
+            salt_name: "",
+            salt_qyt: "",
+            salt_qyt_type: "",
+            description: ""
+        };
+
+        this.state.medicinedetails.push(item);
+        this.setState({});
     }
 
 
@@ -155,7 +180,50 @@ export class MedicineAddComponent extends Component {
                                                     <option value={item.id} key={item.id}>{item.name}</option>
                                                 ))}
                                             </select>
+
                                         </div>
+                                        <br />
+                                        <div className="form-group">
+                                            <div className="col-sm-6">
+                                                <button className="btn btn-block btn-success" type="button" onClick={this.addItems}>Add Details</button>
+                                            </div>
+                                            <div className="col-sm-6">
+                                                <button className="btn btn-block btn-danger" type="button" onClick={this.removeItems}>Remove Details</button>
+
+                                            </div>
+                                        </div>
+                                        {this.state.medicinedetails.map((item) => (
+                                            <div className="form-group row">
+                                                <div className="col-sm-3">
+                                                    <label htmlFor="salt_name" > Salt name </label>
+                                                    <div className="form-line">
+                                                        <input type="text" name="salt_name" id="salt_name" className="form-control" placeholder="Salt Name" onChange={this.handelInput} />
+                                                    </div>
+                                                </div>
+                                                <div className="col-sm-3">
+                                                    <label htmlFor="salt_qyt" > Salt Qty </label>
+                                                    <div className="form-line">
+                                                        <input type="text" name="salt_qyt" id="salt_qyt" className="form-control" placeholder="Salt Quantity" />
+                                                    </div>
+                                                </div>
+
+                                                <div className="col-sm-3">
+                                                    <label htmlFor="salt_qyt_type" > Salt Qty Type </label>
+                                                    <div className="form-line">
+                                                        <input type="text" name="salt_qyt_type" id="salt_qyt_type" className="form-control" placeholder="Salt Quantity Type" />
+                                                    </div>
+                                                </div>
+                                                <div className="col-sm-3">
+                                                    <label htmlFor="description" > Salt Description </label>
+                                                    <div className="form-line">
+                                                        <input type="text" name="description" id="description" className="form-control" placeholder="Salt Description" />
+                                                    </div>
+                                                </div>
+
+
+                                            </div>
+
+                                        ))}
 
 
                                         <br />
