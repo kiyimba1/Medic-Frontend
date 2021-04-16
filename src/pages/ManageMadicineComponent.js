@@ -13,8 +13,11 @@ export class ManageMedicineComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
+        medicineDataList: [],
+        detaLoaded: false,
         companylist: [],
-        medicinedetails: [{ salt_name: "", salt_qyt: "", salt_qyt_type: "", description: "" }]
+        medicinedetails: [{ salt_name: "", salt_qyt: "", salt_qyt_type: "", description: "" }],
+
     }
 
     componentDidMount() {
@@ -24,10 +27,11 @@ export class ManageMedicineComponent extends Component {
     async LoadInitialData() {
 
         var apiHandler = new APIHandler();
-        var response = await apiHandler.fetchCompanyOnly()
+        // var response = await apiHandler.fetchCompanyOnly()
         var medicinedata = await apiHandler.fetchAllMedicine()
-        console.log(medicinedata)
-        this.setState({ companylist: response.data })
+        // console.log(medicinedata.data.data)
+        this.setState({ medicineDataList: medicinedata.data.data })
+        this.setState({ dataLoaded: true })
     }
 
     handelInput = (event) => {
@@ -147,7 +151,7 @@ export class ManageMedicineComponent extends Component {
                                                     <td>{medicine.shelf_no}</td>
                                                     <td>{new Date(medicine.expire_date).toLocaleString()}</td>
                                                     <td>{new Date(medicine.mfg_date).toLocaleString()}</td>
-                                                    <td>{medicine.company_id}</td>
+                                                    <td>{medicine.company.name}</td>
                                                     <td>{medicine.description}</td>
                                                     <td>{medicine.in_stock_total}</td>
                                                     <td>{medicine.qty_in_strip}</td>
@@ -257,14 +261,14 @@ export class ManageMedicineComponent extends Component {
                                             </div>
                                         </div>
                                         <label htmlFor="company_id">Company</label>
-                                        <div className="form-inline">
+                                        {/* <div className="form-inline">
                                             <select className="form-control" name="company_id">
                                                 {this.state.companylist.map((item) => (
                                                     <option value={item.id} key={item.id}>{item.name}</option>
                                                 ))}
                                             </select>
 
-                                        </div>
+                                        </div> */}
                                         <br />
                                         <div className="form-group">
                                             <div className="col-sm-6">
