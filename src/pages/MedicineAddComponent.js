@@ -26,7 +26,7 @@ export class MedicineAddComponent extends Component {
 
         var apiHandler = new APIHandler();
         var response = await apiHandler.fetchCompanyOnly()
-        console.log(response)
+        // console.log(response)
         this.setState({ companylist: response.data })
     }
 
@@ -34,7 +34,7 @@ export class MedicineAddComponent extends Component {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.saveMedicineData(event.target.bank_account_no.value, event.target.ifsc_no.value, this.props.match.params.id);
+        var response = await apiHandler.saveMedicineData(event.target.name.value, event.target.medical_type.value, event.target.buy_price.value, event.target.sell_price.value, event.target.c_gst.value, event.target.s_gst.value, event.target.batch_no.value, event.target.shelf_no.value, event.target.expire_date.value, event.target.mfg_date.value, event.target.company_id.value, event.target.description.value, event.target.in_stock_total.value, event.target.qty_in_strip.value);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
@@ -119,13 +119,13 @@ export class MedicineAddComponent extends Component {
                                         <label htmlFor="expire_date">Expiry Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="Enter Exp Date" />
+                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="dd-mm-yyyy" />
                                             </div>
                                         </div>
                                         <label htmlFor="mfg_date">Mfg Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="Enter Mfg Date" />
+                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="dd-mm-yyyy" />
                                             </div>
                                         </div>
 
@@ -150,7 +150,7 @@ export class MedicineAddComponent extends Component {
                                         </div>
                                         <label htmlFor="company_id">Company</label>
                                         <div className="form-inline">
-                                            <select className="form-control">
+                                            <select className="form-control" name="company_id">
                                                 {this.state.companylist.map((item) => (
                                                     <option value={item.id} key={item.id}>{item.name}</option>
                                                 ))}

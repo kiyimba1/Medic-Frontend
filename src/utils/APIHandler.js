@@ -65,6 +65,14 @@ class APIHandler {
         return response
     }
 
+    async saveMedicineData(name, medical_type, buy_price, sell_price, c_gst, s_gst, batch_no, shelf_no, expire_date, mfg_date, company_id, description, in_stock_total, qty_in_strip) {
+        await this.checkLogin();
+        var response = await axios.post(Config.medicineApiUrl, { name: name, medical_type: medical_type, buy_price: buy_price, sell_price: sell_price, c_gst: c_gst, s_gst: s_gst, batch_no: batch_no, shelf_no: shelf_no, expire_date: expire_date, mfg_date: mfg_date, description: description, in_stock_total: in_stock_total, qty_in_strip: qty_in_strip, company_id: company_id }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } });
+        return response
+        // console.log(response)
+
+    }
+
 }
 
 export default APIHandler;
