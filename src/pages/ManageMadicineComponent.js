@@ -17,6 +17,7 @@ export class ManageMedicineComponent extends Component {
         detaLoaded: false,
         companylist: [],
         medicinedetails: [{ salt_name: "", salt_qyt: "", salt_qyt_type: "", description: "" }],
+        selectedIndex: "1",
         selectedMedicine: {},
 
     }
@@ -31,8 +32,7 @@ export class ManageMedicineComponent extends Component {
         // var response = await apiHandler.fetchCompanyOnly()
         var medicinedata = await apiHandler.fetchAllMedicine()
         // console.log(medicinedata.data.data)
-        this.setState({ medicineDataList: medicinedata.data.data })
-        this.setState({ dataLoaded: true })
+        this.setState({ medicineDataList: medicinedata.data.data, dataLoaded: true })
     }
 
     handelInput = (event) => {
@@ -81,7 +81,8 @@ export class ManageMedicineComponent extends Component {
 
     viewMedicineDetails = (index) => {
         // console.log(this.state.medicineDataList[index])
-        this.setState({ selectedMedicine: this.state.medicineDataList[index] })
+        // this.setState({ selectedMedicine: this.state.medicineDataList[index] })
+        this.setState({ selectedIndex: index })
 
 
     }
@@ -191,61 +192,61 @@ export class ManageMedicineComponent extends Component {
                                         <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="name" id="name" className="form-control" placeholder="Enter Name" defaultValue={this.state.selectedMedicine.name} />
+                                                <input type="text" name="name" id="name" className="form-control" placeholder="Enter Name" defaultValue={this.state.medicineDataList[this.state.selectedIndex].name} />
                                             </div>
                                         </div>
                                         <label htmlFor="medical_type">Medical Type</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="medical_type" id="medical_type" className="form-control" placeholder="Enter Medical Type" defaultValue={this.state.selectedMedicine.medical_type} />
+                                                <input type="text" name="medical_type" id="medical_type" className="form-control" placeholder="Enter Medical Type" defaultValue={this.state.medicineDataList[this.state.selectedIndex].medical_type} />
                                             </div>
                                         </div>
                                         <label htmlFor="buy_price">Buy Price</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="buy_price" id="buy_price" className="form-control" placeholder="Enter Buy Price" defaultValue={this.state.selectedMedicine.buy_price} />
+                                                <input type="text" name="buy_price" id="buy_price" className="form-control" placeholder="Enter Buy Price" defaultValue={this.state.medicineDataList[this.state.selectedIndex].buy_price} />
                                             </div>
                                         </div>
                                         <label htmlFor="sell_price">Sell Price</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="sell_price" id="sell_price" className="form-control" placeholder="Enter Name" defaultValue={this.state.selectedMedicine.sell_price} />
+                                                <input type="text" name="sell_price" id="sell_price" className="form-control" placeholder="Enter Name" defaultValue={this.state.medicineDataList[this.state.selectedIndex].sell_price} />
                                             </div>
                                         </div>
                                         <label htmlFor="c_gst">C GST</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="c_gst" id="c_gst" className="form-control" placeholder="Enter CGST Code" defaultValue={this.state.selectedMedicine.c_gst} />
+                                                <input type="text" name="c_gst" id="c_gst" className="form-control" placeholder="Enter CGST Code" defaultValue={this.state.medicineDataList[this.state.selectedIndex].c_gst} />
                                             </div>
                                         </div>
                                         <label htmlFor="s_gst">S GST</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="s_gst" id="s_gst" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.selectedMedicine.s_gst} />
+                                                <input type="text" name="s_gst" id="s_gst" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.medicineDataList[this.state.selectedIndex].s_gst} />
                                             </div>
                                         </div>
                                         <label htmlFor="batch_no">Batch No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="batch_no" id="batch_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.selectedMedicine.batch_no} />
+                                                <input type="text" name="batch_no" id="batch_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.medicineDataList[this.state.selectedIndex].batch_no} />
                                             </div>
                                         </div>
                                         <label htmlFor="shelf_no">Shelf No.</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="shelf_no" id="shelf_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.selectedMedicine.shelf_no} />
+                                                <input type="text" name="shelf_no" id="shelf_no" className="form-control" placeholder="Enter S GST Code" defaultValue={this.state.medicineDataList[this.state.selectedIndex].shelf_no} />
                                             </div>
                                         </div>
                                         <label htmlFor="expire_date">Expiry Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.selectedMedicine.expire_date} />
+                                                <input type="text" name="expire_date" id="expire_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.medicineDataList[this.state.selectedIndex].expire_date} />
                                             </div>
                                         </div>
                                         <label htmlFor="mfg_date">Mfg Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.selectedMedicine.mfg_date} />
+                                                <input type="text" name="mfg_date" id="mfg_date" className="form-control" placeholder="dd-mm-yyyy" defaultValue={this.state.medicineDataList[this.state.selectedIndex].mfg_date} />
                                             </div>
                                         </div>
 
@@ -253,25 +254,25 @@ export class ManageMedicineComponent extends Component {
                                         <label htmlFor="description">Description</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="description" id="description" className="form-control" placeholder="Enter Description" defaultValue={this.state.selectedMedicine.description} />
+                                                <input type="text" name="description" id="description" className="form-control" placeholder="Enter Description" defaultValue={this.state.medicineDataList[this.state.selectedIndex].description} />
                                             </div>
                                         </div>
                                         <label htmlFor="in_stock_total">Stock in Total</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="in_stock_total" id="in_stock_total" className="form-control" placeholder="Enter Total Stock " defaultValue={this.state.selectedMedicine.in_stock_total} />
+                                                <input type="text" name="in_stock_total" id="in_stock_total" className="form-control" placeholder="Enter Total Stock " defaultValue={this.state.medicineDataList[this.state.selectedIndex].in_stock_total} />
                                             </div>
                                         </div>
                                         <label htmlFor="description">Qty in Strip</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" name="qty_in_strip" id="qty_in_strip" className="form-control" placeholder="Enter Quantity in Strip" defaultValue={this.state.selectedMedicine.qty_in_strip} />
+                                                <input type="text" name="qty_in_strip" id="qty_in_strip" className="form-control" placeholder="Enter Quantity in Strip" defaultValue={this.state.medicineDataList[this.state.selectedIndex].qty_in_strip} />
                                             </div>
                                         </div>
                                         <label htmlFor="company_id">Company</label>
                                         {/* <div className="form-inline">
                                             <select className="form-control" name="company_id">
-                                                {this.state.selectedMedicine.companylist.map((item) => (
+                                                {this.state.medicineDataList[this.state.selectedIndex].companylist.map((item) => (
                                                     <option value={item.id} key={item.id}>{item.name}</option>
                                                 ))}
                                             </select>
