@@ -9,7 +9,9 @@ import Login from './pages/Login'
 import HomeComponent from './pages/HomeComponent'
 import CompanyDetailsComponent from './pages/CompanyDetailsComponent'
 import AddCompanyBankComponent from './pages/AddCompanyBankComponent'
+import ManageMedicineComponent from './pages/ManageMadicineComponent'
 import MedicineAddComponent from './pages/MedicineAddComponent'
+
 
 
 
