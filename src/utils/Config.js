@@ -11,6 +11,8 @@ class Config {
     static sidebarItem = [
         { "index": 0, "title": "Home", "url": "/home", "icon": "home" },
         { "index": 1, "title": "Company", "url": "/company", "icon": "assessment" },
+        { "index": 2, "title": "Medicine", "url": "/addMedicine", "icon": "assessment" },
+
     ]
 }
 
