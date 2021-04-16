@@ -1,0 +1,17 @@
+-------------------- Auto-Git Log --------------------
+		Fri Apr 16 2021 16:12:34 GMT+0300 (East Africa Time)
+------------------------------------------------------
+
+Modified files:
+* src/index.js
+
+
+Created files:
+* .autogit/logs/log-16-3-2021-15-42-29.txt
+* src/pages/ManageMadicineComponent.js
+
+
+Deleted files:
+
+
+Renamed files:
