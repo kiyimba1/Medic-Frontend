@@ -91,7 +91,7 @@ export class ManageMedicineComponent extends Component {
 
                                 <div className="header">
                                     <h2>
-                                        All Companies
+                                        All Medicines
                                     </h2>
 
                                 </div>
@@ -116,31 +116,44 @@ export class ManageMedicineComponent extends Component {
                                             <tr>
                                                 <th>#</th>
                                                 <th>NAME</th>
-                                                <th>License NO.</th>
-                                                <th>Address</th>
-                                                <th>Contact</th>
-                                                <th>Email</th>
-                                                <th>Description</th>
-                                                <th>Added On</th>
-                                                <th>Action</th>
-
+                                                <th>MEDICAL TYPE</th>
+                                                <th>BUY PRICE</th>
+                                                <th>SELL PRICE</th>
+                                                <th>C GST</th>
+                                                <th>S GST</th>
+                                                <th>BATCH No.</th>
+                                                <th>SHELF No.</th>
+                                                <th>EXPIRES</th>
+                                                <th>MFGD</th>
+                                                <th>COMPANY</th>
+                                                <th>IN STOCK</th>
+                                                <th>IN STRIP</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
 
 
-                                            {this.state.companyDataList.map((company) => (
-                                                <tr key={company.id}>
-                                                    <td>{company.id}</td>
-                                                    <td>{company.name}</td>
-                                                    <td>{company.license_no}</td>
-                                                    <td>{company.address}</td>
-                                                    <td>{company.contact_no}</td>
-                                                    <td>{company.email}</td>
-                                                    <td>{company.description}</td>
-                                                    <td>{new Date(company.added_on).toLocaleString()}</td>
-                                                    <td><button onClick={() => this.viewCompanyDetails(company.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
+                                            {this.state.medicineDataList.map((medicine) => (
+                                                <tr key={medicine.id}>
+                                                    <td>{medicine.id}</td>
+                                                    <td>{medicine.name}</td>
+                                                    <td>{medicine.medical_type}</td>
+                                                    <td>{medicine.buy_price}</td>
+                                                    <td>{medicine.sell_price}</td>
+                                                    <td>{medicine.c_gst}</td>
+                                                    <td>{medicine.s_gst}</td>
+                                                    <td>{medicine.batch_no}</td>
+                                                    <td>{medicine.shelf_no}</td>
+                                                    <td>{new Date(medicine.expire_date).toLocaleString()}</td>
+                                                    <td>{new Date(medicine.mfg_date).toLocaleString()}</td>
+                                                    <td>{medicine.company_id}</td>
+                                                    <td>{medicine.description}</td>
+                                                    <td>{medicine.in_stock_total}</td>
+                                                    <td>{medicine.qty_in_strip}</td>
+
+
+                                                    <td><button onClick={() => this.viewCompanyDetails(medicine.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
 
                                                 </tr>
                                             ))}
