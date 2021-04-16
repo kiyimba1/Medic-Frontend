@@ -30,16 +30,19 @@ export class MedicineAddComponent extends Component {
     }
 
     handelInput = (event) => {
-        console.log(event.target.getAttribute("data-index"))
-        console.log(event.target.name)
-        console.log(event.target.value)
+        var index = event.target.getAttribute("data-index")
+        var keyname = event.target.name
+        var value = event.target.value
+        this.state.medicinedetails[index][keyname] = value;
+        this.setState({})
+        // console.log(this.state)
     }
 
     async formSubmit(event) {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.saveMedicineData(event.target.name.value, event.target.medical_type.value, event.target.buy_price.value, event.target.sell_price.value, event.target.c_gst.value, event.target.s_gst.value, event.target.batch_no.value, event.target.shelf_no.value, event.target.expire_date.value, event.target.mfg_date.value, event.target.company_id.value, event.target.description.value, event.target.in_stock_total.value, event.target.qty_in_strip.value);
+        var response = await apiHandler.saveMedicineData(event.target.name.value, event.target.medical_type.value, event.target.buy_price.value, event.target.sell_price.value, event.target.c_gst.value, event.target.s_gst.value, event.target.batch_no.value, event.target.shelf_no.value, event.target.expire_date.value, event.target.mfg_date.value, event.target.company_id.value, event.target.description.value, event.target.in_stock_total.value, event.target.qty_in_strip.value, this.state.medicinedetails);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
