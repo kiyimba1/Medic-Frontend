@@ -40,7 +40,7 @@ export class MedicineAddComponent extends Component {
         this.setState({ errorRes: response.data.errorRes })
         this.setState({ errorMessage: response.data.message })
         this.setState({ sendData: true })
-        this.props.history.push("/companydetails/" + this.props.match.params.id)
+        // this.props.history.push("/companydetails/" + this.props.match.params.id)
 
 
     }
