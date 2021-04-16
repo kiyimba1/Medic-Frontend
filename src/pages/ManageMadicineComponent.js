@@ -88,6 +88,72 @@ export class ManageMedicineComponent extends Component {
                     <div className="row clearfix">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div className="card">
+
+                                <div className="header">
+                                    <h2>
+                                        All Companies
+                                    </h2>
+
+                                </div>
+                                <div className="body table-responsive">
+                                    {this.state.dataLoaded == false ? (
+                                        <div className="text-center">
+                                            <div className="preloader pl-size-xl">
+                                                <div className="spinner-layer">
+                                                    <div className="circle-clipper left">
+                                                        <div className="circle"></div>
+                                                    </div>
+                                                    <div className="circle-clipper right">
+                                                        <div className="circle"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    ) : ''}
+
+                                    <table className="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>NAME</th>
+                                                <th>License NO.</th>
+                                                <th>Address</th>
+                                                <th>Contact</th>
+                                                <th>Email</th>
+                                                <th>Description</th>
+                                                <th>Added On</th>
+                                                <th>Action</th>
+
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+
+
+
+                                            {this.state.companyDataList.map((company) => (
+                                                <tr key={company.id}>
+                                                    <td>{company.id}</td>
+                                                    <td>{company.name}</td>
+                                                    <td>{company.license_no}</td>
+                                                    <td>{company.address}</td>
+                                                    <td>{company.contact_no}</td>
+                                                    <td>{company.email}</td>
+                                                    <td>{company.description}</td>
+                                                    <td>{new Date(company.added_on).toLocaleString()}</td>
+                                                    <td><button onClick={() => this.viewCompanyDetails(company.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
+
+                                                </tr>
+                                            ))}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row clearfix">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div className="card">
                                 <div className="header">
 
                                     <h2>
