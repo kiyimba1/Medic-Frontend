@@ -18,14 +18,15 @@ export class ManageMedicineComponent extends Component {
     }
 
     componentDidMount() {
-        this.LoadCompany()
+        this.LoadInitialData()
     }
 
-    async LoadCompany() {
+    async LoadInitialData() {
 
         var apiHandler = new APIHandler();
         var response = await apiHandler.fetchCompanyOnly()
-        // console.log(response)
+        var medicinedata = await apiHandler.fetchAllMedicine()
+        console.log(medicinedata)
         this.setState({ companylist: response.data })
     }
 

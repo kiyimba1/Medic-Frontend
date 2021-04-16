@@ -73,6 +73,13 @@ class APIHandler {
 
     }
 
+    async fetchAllMedicine() {
+        await this.checkLogin();
+
+        var response = await axios.get(Config.medicineApiUrl, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
 }
 
 export default APIHandler;

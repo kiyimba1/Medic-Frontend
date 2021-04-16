@@ -12,11 +12,6 @@ import AddCompanyBankComponent from './pages/AddCompanyBankComponent'
 import ManageMedicineComponent from './pages/ManageMadicineComponent'
 import MedicineAddComponent from './pages/MedicineAddComponent'
 
-
-
-
-
-
 ReactDOM.render(
     <Router>
         <Switch>
