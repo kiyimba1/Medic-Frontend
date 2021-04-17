@@ -173,15 +173,15 @@ export class CompanyAccountComponent extends Component {
 
 
 
-                                            {this.state.companyDataList.map((company) => (
-                                                <tr key={company.id}>
-                                                    <td>{company.id}</td>
-                                                    <td>{company.name}</td>
-                                                    <td>{company.license_no}</td>
-                                                    <td>{company.address}</td>
-                                                    <td>{company.contact_no}</td>
-                                                    <td>{company.email}</td>
-                                                    <td>{company.description}</td>
+                                            {this.state.companyAccountDataList.map((account) => (
+                                                <tr key={account.id}>
+                                                    <td>{account.id}</td>
+                                                    <td>{account.name}</td>
+                                                    <td>{account.license_no}</td>
+                                                    <td>{account.address}</td>
+                                                    <td>{account.contact_no}</td>
+                                                    <td>{account.email}</td>
+                                                    <td>{account.description}</td>
                                                     <td>{new Date(company.added_on).toLocaleString()}</td>
                                                     <td><button onClick={() => this.viewCompanyDetails(company.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
 
