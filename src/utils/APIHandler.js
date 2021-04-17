@@ -88,6 +88,13 @@ class APIHandler {
         return response
     }
 
+    async fetchAllCompanyAccount() {
+        await this.checkLogin();
+
+        var response = await axios.get(Config.companyAccountApiUrl, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
 }
 
 export default APIHandler;

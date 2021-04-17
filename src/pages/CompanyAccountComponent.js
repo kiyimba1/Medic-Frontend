@@ -15,7 +15,8 @@ export class CompanyAccountComponent extends Component {
         btnMessage: 0,
         sendData: false,
         companyDataList: [],
-        dataLoaded: false
+        dataLoaded: false,
+        companyAccountDataList: []
 
     }
 
@@ -37,15 +38,17 @@ export class CompanyAccountComponent extends Component {
     }
 
     componentDidMount() {
-        this.fetchCompanyData()
+        this.fetchCompanyAccountData()
     }
 
-    async fetchCompanyData() {
+
+
+    async fetchCompanyAccountData() {
         var apiHandler = new APIHandler();
-        var companydata = await apiHandler.fetchAllCompany()
+        var companyaccountdata = await apiHandler.fetchAllCompanyAccount()
+        this.setState({ companyAccountDataList: companyaccountdata.data.data })
         this.setState({ dataLoaded: true })
-        this.setState({ companyDataList: companydata.data.data })
-        // console.log(companydata)
+
     }
 
     viewCompanyDetails = (id) => {
@@ -176,14 +179,14 @@ export class CompanyAccountComponent extends Component {
                                             {this.state.companyAccountDataList.map((account) => (
                                                 <tr key={account.id}>
                                                     <td>{account.id}</td>
-                                                    <td>{account.name}</td>
-                                                    <td>{account.license_no}</td>
-                                                    <td>{account.address}</td>
-                                                    <td>{account.contact_no}</td>
-                                                    <td>{account.email}</td>
-                                                    <td>{account.description}</td>
-                                                    <td>{new Date(company.added_on).toLocaleString()}</td>
-                                                    <td><button onClick={() => this.viewCompanyDetails(company.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
+                                                    <td>{account.company_id}</td>
+                                                    <td>{account.transaction_type}</td>
+                                                    <td>{account.transaction_amount}</td>
+                                                    <td>{new Date(account.transaction_date).toLocaleString()}</td>
+                                                    <td>{new Date(account.added_on).toLocaleString()}</td>
+                                                    <td>{account.payment_method}</td>
+
+                                                    <td><button onClick={() => this.viewCompanyDetails(account.id)} type="button" className="btn btn-warning waves-effect">View</button></td>
 
                                                 </tr>
                                             ))}
