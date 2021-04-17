@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import APIHandler from '../utils/APIHandler';
 import AuthHandler from '../utils/AuthHandler'
 
-export class CompanyAccountComponent extends Component {
+export class CompanyComponent extends Component {
     constructor(props) {
         super(props)
         this.formSubmit = this.formSubmit.bind(this)
@@ -199,4 +199,4 @@ export class CompanyAccountComponent extends Component {
     }
 }
 
-export default CompanyAccountComponent
+export default CompanyComponent
