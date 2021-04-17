@@ -14,7 +14,7 @@ export class CompanyAccountComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-        companyDataList: [],
+        companylist: [],
         dataLoaded: false,
         companyAccountDataList: []
 
@@ -28,7 +28,7 @@ export class CompanyAccountComponent extends Component {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.saveCompanyData(event.target.name.value, event.target.license_no.value, event.target.address.value, event.target.contact_no.value, event.target.email.value, event.target.description.value);
+        var response = await apiHandler.addBillAccount(event.target.company_id.value, event.target.transaction_type.value, event.target.transaction_amount.value, event.target.transaction_date.value, event.target.payment_method.value);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
@@ -45,9 +45,11 @@ export class CompanyAccountComponent extends Component {
 
     async fetchCompanyAccountData() {
         var apiHandler = new APIHandler();
+        var companydata = await apiHandler.fetchCompanyOnly()
         var companyaccountdata = await apiHandler.fetchAllCompanyAccount()
-        this.setState({ companyAccountDataList: companyaccountdata.data.data })
+        this.setState({ companyAccountDataList: companyaccountdata.data.data, companylist: companydata.data })
         this.setState({ dataLoaded: true })
+        // console.log(companydata)
 
     }
 
@@ -76,45 +78,43 @@ export class CompanyAccountComponent extends Component {
                                 </div>
                                 <div className="body">
                                     <form onSubmit={this.formSubmit}>
-                                        <label htmlFor="name">Name</label>
+                                        <label htmlFor="company_id">Company</label>
+                                        <div className="form-inline">
+                                            <select className="form-control" name="company_id">
+                                                {this.state.companylist.map((item) => (
+                                                    <option value={item.id} key={item.id}>{item.name}</option>
+                                                ))}
+                                            </select>
+
+                                        </div>
+                                        <label htmlFor="transaction_type">Transaction type</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="name" className="form-control" placeholder="Company Name" />
+                                                <input type="text" id="transaction_type" name="transaction_type" className="form-control" placeholder="Enter License Number" />
                                             </div>
                                         </div>
-                                        <label htmlFor="license_no">License No.</label>
+                                        <label htmlFor="transaction_amount">Transaction Ammount</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="license_no" className="form-control" placeholder="Enter License Number" />
+                                                <input type="text" id="transaction_amount" name="transaction_amount" className="form-control" placeholder="Enter License Number" />
                                             </div>
                                         </div>
-                                        <label htmlFor="address">Address</label>
+                                        <label htmlFor="transaction_date">Transaction Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="address" className="form-control" placeholder="Enter Address" />
+                                                <input type="text" id="transaction_date" name="transaction_date" className="form-control" placeholder="Enter License Number" />
                                             </div>
                                         </div>
-                                        <label htmlFor="contact_no">Contact No.</label>
+                                        <label htmlFor="payment_method">Payment Method</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="contact_no" className="form-control" placeholder="Enter Contact Number" />
-                                            </div>
-                                        </div>
-                                        <label htmlFor="email">Email</label>
-                                        <div className="form-group">
-                                            <div className="form-line">
-                                                <input type="text" id="email" className="form-control" placeholder="Enter Company Email" />
-                                            </div>
-                                        </div>
-                                        <label htmlFor="description">Description</label>
-                                        <div className="form-group">
-                                            <div className="form-line">
-                                                <input type="text" id="description" className="form-control" placeholder="Enter Company Description" />
+                                                <input type="text" id="payment_method" name="payment_method" className="form-control" placeholder="Enter License Number" />
                                             </div>
                                         </div>
 
+
                                         <br />
-                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Add Company" : "Adding Company Please Wait.."}</button>
+                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Add Bill" : "Adding Bill Please Wait.."}</button>
                                         <br />
                                         {this.state.errorRes == false && this.state.sendData == true ? (
                                             <div className="alert alert-success">
@@ -167,8 +167,7 @@ export class CompanyAccountComponent extends Component {
                                                 <th>TRANSACTION DATE</th>
                                                 <th>ADDED ON</th>
                                                 <th>PAYMENT METHOD</th>
-                                                <th>Added On</th>
-                                                <th>Action</th>
+
 
                                             </tr>
                                         </thead>
@@ -179,7 +178,7 @@ export class CompanyAccountComponent extends Component {
                                             {this.state.companyAccountDataList.map((account) => (
                                                 <tr key={account.id}>
                                                     <td>{account.id}</td>
-                                                    <td>{account.company_id}</td>
+                                                    <td>{account.company.name}</td>
                                                     <td>{account.transaction_type}</td>
                                                     <td>{account.transaction_amount}</td>
                                                     <td>{new Date(account.transaction_date).toLocaleString()}</td>
