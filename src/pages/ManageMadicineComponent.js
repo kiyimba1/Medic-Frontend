@@ -32,6 +32,7 @@ export class ManageMedicineComponent extends Component {
         qty_in_strip: "",
         total_salt_list: 0,
         medicine_id: 0,
+        id: 0,
     };
 
     async formSubmit(event) {
@@ -514,7 +515,7 @@ export class ManageMedicineComponent extends Component {
                                             disabled={this.state.btnMessage == 0 ? false : true}
                                         >
                                             {this.state.btnMessage == 0
-                                                ? "Edit Medicine"
+                                                ? "Update Medicine"
                                                 : "Updating Medicine Please Wait.."}
                                         </button>
                                         <br />
