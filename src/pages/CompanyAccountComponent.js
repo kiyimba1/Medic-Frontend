@@ -34,6 +34,7 @@ export class CompanyAccountComponent extends Component {
         this.setState({ errorRes: response.data.errorRes })
         this.setState({ errorMessage: response.data.message })
         this.setState({ sendData: true })
+        this.updateData()
 
     }
 
@@ -57,6 +58,12 @@ export class CompanyAccountComponent extends Component {
         // console.log(id)
         // console.log(this.props)
         this.props.history.push("/companydetails/" + id)
+    }
+
+    async updateData() {
+        var apiHandler = new APIHandler();
+        var companyaccountdata = await apiHandler.fetchAllCompanyAccount()
+        this.setState({ companyAccountDataList: companyaccountdata.data.data })
     }
 
     render() {
@@ -90,25 +97,28 @@ export class CompanyAccountComponent extends Component {
                                         <label htmlFor="transaction_type">Transaction type</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="transaction_type" name="transaction_type" className="form-control" placeholder="Enter License Number" />
+                                                <select id="transaction_type" name="transaction_type" className="form-control" >
+                                                    <option value="D">Debit</option>
+                                                    <option value="C">Credit</option>
+                                                </select>
                                             </div>
                                         </div>
                                         <label htmlFor="transaction_amount">Transaction Ammount</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="transaction_amount" name="transaction_amount" className="form-control" placeholder="Enter License Number" />
+                                                <input type="text" id="transaction_amount" name="transaction_amount" className="form-control" placeholder="Enter Transaction Ammount" />
                                             </div>
                                         </div>
                                         <label htmlFor="transaction_date">Transaction Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="transaction_date" name="transaction_date" className="form-control" placeholder="Enter License Number" />
+                                                <input type="text" id="transaction_date" name="transaction_date" className="form-control" placeholder="Enter Transaction Date" />
                                             </div>
                                         </div>
                                         <label htmlFor="payment_method">Payment Method</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="payment_method" name="payment_method" className="form-control" placeholder="Enter License Number" />
+                                                <input type="text" id="payment_method" name="payment_method" className="form-control" placeholder="Enter Payment Method" />
                                             </div>
                                         </div>
 
