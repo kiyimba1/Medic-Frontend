@@ -103,6 +103,20 @@ class APIHandler {
 
     }
 
+    async fetchAllEmployeeData() {
+        await this.checkLogin();
+
+        var response = await axios.get(Config.employeeApiUrl, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
+    async addEmployeeData(name, joining_date, phone, address) {
+        await this.checkLogin();
+
+        var response = await axios.post(Config.employeeApiUrl, { name: name, joining_date: joining_date, phone: phone, address: address }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
 }
 
 export default APIHandler;

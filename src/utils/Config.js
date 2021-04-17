@@ -6,6 +6,7 @@ class Config {
     static companyOnlyApiUrl = "http://127.0.0.1:8000/api/companyonly/";
     static medicineApiUrl = "http://127.0.0.1:8000/api/medicine/";
     static companyAccountApiUrl = "http://127.0.0.1:8000/api/companyaccount/";
+    static employeeApiUrl = "http://127.0.0.1:8000/api/employee/";
 
     static homeUrl = "/home"
     static logoutPageUrl = "logout"
@@ -17,6 +18,7 @@ class Config {
         { "index": 2, "title": "Medicine", "url": "/addMedicine", "icon": "assessment" },
         { "index": 3, "title": "Manage Medicine", "url": "/manageMedicine", "icon": "assessment" },
         { "index": 4, "title": "Manage Company Account", "url": "/manageCompanyAccount", "icon": "assessment" },
+        { "index": 5, "title": "Manage Employee", "url": "/manageEmployee", "icon": "assessment" },
     ]
 }
 
