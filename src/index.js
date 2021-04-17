@@ -1,7 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
-import CompanyComponent from './pages/CompanyComponent'
+import CompanyComponent, { CompanyAccountComponent } from './pages/CompanyComponent'
 import LogoutComponent from './pages/LogoutComponent'
 import { PrivateRouteNew } from './utils/PrivateRouteNew'
 import Login from './pages/Login'
@@ -23,6 +23,7 @@ ReactDOM.render(
             <PrivateRouteNew exact path="/addCompanyBank/:id" activepage="1" page={AddCompanyBankComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/addMedicine" activepage="2" page={MedicineAddComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/manageMedicine" activepage="3" page={ManageMedicineComponent}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/manageCompanyAccount" activepage="4" page={CompanyAccountComponent}></PrivateRouteNew>
 
             <Route exact path="/" component={Login}></Route>
         </Switch>
