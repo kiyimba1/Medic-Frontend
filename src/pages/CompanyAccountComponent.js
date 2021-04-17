@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import APIHandler from '../utils/APIHandler';
 import AuthHandler from '../utils/AuthHandler'
 
-export class CompanyComponent extends Component {
+
+export class CompanyAccountComponent extends Component {
     constructor(props) {
         super(props)
         this.formSubmit = this.formSubmit.bind(this)
@@ -58,7 +59,7 @@ export class CompanyComponent extends Component {
             <section className="content">
                 <div className="container-fluid">
                     <div className="block-header">
-                        <h2>Manage Company</h2>
+                        <h2>Manage Company Account</h2>
                     </div>
                     <div className="row clearfix">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -66,7 +67,7 @@ export class CompanyComponent extends Component {
                                 <div className="header">
 
                                     <h2>
-                                        ADD Company
+                                        ADD Company Account Bill
                                     </h2>
 
                                 </div>
@@ -133,7 +134,7 @@ export class CompanyComponent extends Component {
 
                                 <div className="header">
                                     <h2>
-                                        All Companies
+                                        All Companies Account Transactions
                                     </h2>
 
                                 </div>
@@ -157,12 +158,12 @@ export class CompanyComponent extends Component {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>NAME</th>
-                                                <th>License NO.</th>
-                                                <th>Address</th>
-                                                <th>Contact</th>
-                                                <th>Email</th>
-                                                <th>Description</th>
+                                                <th>COMPANY</th>
+                                                <th>TRASACTION TYPE</th>
+                                                <th>TRANSACTION AMOUNT</th>
+                                                <th>TRANSACTION DATE</th>
+                                                <th>ADDED ON</th>
+                                                <th>PAYMENT METHOD</th>
                                                 <th>Added On</th>
                                                 <th>Action</th>
 
@@ -199,4 +200,4 @@ export class CompanyComponent extends Component {
     }
 }
 
-export default CompanyComponent
+export default CompanyAccountComponent

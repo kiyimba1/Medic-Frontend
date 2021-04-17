@@ -1,7 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Switch, BrowserRouter as Router, Route } from 'react-router-dom'
-import CompanyComponent, { CompanyAccountComponent } from './pages/CompanyComponent'
 import LogoutComponent from './pages/LogoutComponent'
 import { PrivateRouteNew } from './utils/PrivateRouteNew'
 import Login from './pages/Login'
@@ -11,6 +10,8 @@ import CompanyDetailsComponent from './pages/CompanyDetailsComponent'
 import AddCompanyBankComponent from './pages/AddCompanyBankComponent'
 import ManageMedicineComponent from './pages/ManageMadicineComponent'
 import MedicineAddComponent from './pages/MedicineAddComponent'
+import { CompanyAccountComponent } from './pages/CompanyAccountComponent'
+import CompanyComponent from './pages/CompanyComponent'
 
 ReactDOM.render(
     <Router>
