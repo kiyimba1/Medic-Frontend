@@ -127,14 +127,14 @@ class APIHandler {
     async fetchSalaryEmployee(id) {
         await this.checkLogin();
 
-        var response = await axios.get(Config.employeeSalary + "" + id, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        var response = await axios.get(Config.employeeSalaryApiUrl + "" + id, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
         return response
     }
 
     async fetchBankEmployee(id) {
         await this.checkLogin();
 
-        var response = await axios.get(Config.employeeBank + "" + id, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        var response = await axios.get(Config.employeeBankApiUrl + "" + id, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
         return response
     }
 
