@@ -13,6 +13,7 @@ import MedicineAddComponent from './pages/MedicineAddComponent'
 import { CompanyAccountComponent } from './pages/CompanyAccountComponent'
 import CompanyComponent from './pages/CompanyComponent'
 import EmployeeComponent from './pages/EmployeeComponent'
+import EmployeeDetailsComponent from './pages/EmployeeComponent'
 
 ReactDOM.render(
     <Router>
@@ -28,6 +29,7 @@ ReactDOM.render(
             
             <PrivateRouteNew exact path="/manageCompanyAccount" activepage="4" page={CompanyAccountComponent}></PrivateRouteNew>
             <PrivateRouteNew exact path="/manageEmployee" activepage="5" page={EmployeeComponent}></PrivateRouteNew>
+            <PrivateRouteNew exact path="/viewEmployeeDetails" activepage="5" page={EmployeeDetailsComponent}></PrivateRouteNew>
 
             <Route exact path="/" component={Login}></Route>
         </Switch>
