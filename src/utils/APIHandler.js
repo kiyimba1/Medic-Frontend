@@ -98,7 +98,7 @@ class APIHandler {
     async addBillAccount(company_id, transaction_type, transaction_amount, transaction_date, payment_method) {
         await this.checkLogin()
 
-        var response = await axios.post(Config.companyAccountApiUrl, { company_id: company_id, transaction_type: transaction_type, transaction_amount: transaction_amount, transaction_date: transaction_date, transaction_date: transaction_date, payment_method: payment_method }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        var response = await axios.post(Config.companyAccountApiUrl, { company_id: company_id, transaction_type: transaction_type, transaction_amount: transaction_amount, transaction_date: transaction_date, payment_method: payment_method }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
         return response
 
     }

@@ -1,0 +1,19 @@
+-------------------- Auto-Git Log --------------------
+		Sun Apr 25 2021 15:32:38 GMT+0300 (East Africa Time)
+------------------------------------------------------
+
+Modified files:
+* src/index.js
+* src/pages/EmployeeComponent.js
+* src/utils/APIHandler.js
+* src/utils/Config.js
+
+
+Created files:
+* .autogit/logs/log-25-3-2021-15-2-32.txt
+
+
+Deleted files:
+
+
+Renamed files:
