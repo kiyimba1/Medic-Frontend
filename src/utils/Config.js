@@ -9,6 +9,8 @@ class Config {
     static employeeApiUrl = "http://127.0.0.1:8000/api/employee/";
     static employeeSalaryApiUrl = "http://127.0.0.1:8000/api/employee_salary_by_id/";
     static employeeBankApiUrl = "http://127.0.0.1:8000/api/employee_bank_by_id/";
+    static AllEmployeeBankApiUrl = "http://127.0.0.1:8000/api/employee_all_bank/";
+    static AllEmployeeSalaryApiUrl = "http://127.0.0.1:8000/api/employee_all_salary/";
 
 
     static homeUrl = "/home"

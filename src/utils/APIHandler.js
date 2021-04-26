@@ -138,6 +138,21 @@ class APIHandler {
         return response
     }
 
+    // eslint-disable-next-line no-dupe-class-members
+    async updateEmployeeData(name, joining_date, phone, address, id) {
+        await this.checkLogin();
+
+        var response = await axios.post(Config.employeeApiUrl, { name: name, joining_date: joining_date, phone: phone, address: address }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
+    async addEmployeeSalaryData(employee_id, salary_date, salary_amount) {
+        await this.checkLogin();
+
+        var response = await axios.post(Config.employeeApiUrl, { employee_id: employee_id, salary_date: salary_date, salary_amount: salary_amount }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        return response
+    }
+
 }
 
 export default APIHandler;

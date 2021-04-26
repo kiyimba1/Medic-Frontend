@@ -2,10 +2,11 @@ import React, { Component } from 'react'
 import APIHandler from '../utils/APIHandler';
 import AuthHandler from '../utils/AuthHandler'
 
-export class CompanyDetailsComponent extends Component {
+export class EmployeeDetailsComponent extends Component {
     constructor(props) {
         super(props)
         this.formSubmit = this.formSubmit.bind(this)
+        this.addSalary = this.addSalary.bind(this)
     }
 
     state = {
@@ -13,14 +14,15 @@ export class CompanyDetailsComponent extends Component {
         errorMessage: "",
         btnMessage: 0,
         sendData: false,
-        companyBank: [],
-        name: "",
-        license_no: "",
-        address: "",
-        contact_no: "",
-        email: "",
-        description: "",
-        dataLoaded: false
+        dataLoaded: false,
+        errorResSalary: false,
+        errorMessageSalary: "",
+        btnMessageSalary: 0,
+        sendDataSalary: false,
+        dataLoadedSalary: false,
+        employee: {},
+        employeeSalary: [],
+        employeeBank: []
 
     }
 
@@ -32,28 +34,42 @@ export class CompanyDetailsComponent extends Component {
         event.preventDefault();
         this.setState({ btnMessage: 1 })
         var apiHandler = new APIHandler();
-        var response = await apiHandler.editCompanyData(event.target.name.value, event.target.license_no.value, event.target.address.value, event.target.contact_no.value, event.target.email.value, event.target.description.value, this.props.match.params.id);
+        var response = await apiHandler.updateEmployeeData(event.target.name.value, event.target.joining_date.value, event.target.phone.value, event.target.address.value, this.props.match.params.id);
         // console.log(response);
         this.setState({ btnMessage: 0 })
         this.setState({ errorRes: response.data.errorRes })
         this.setState({ errorMessage: response.data.message })
         this.setState({ sendData: true })
-
     }
 
+    async addSalary(event) {
+        event.preventDefault();
+        var apiHandler = new APIHandler();
+        var response = await apiHandler.addEmployeeSalaryData(this.props.match.params.id, event.target.salary_date, event.target.salary_amount);
+        this.setState({ btnMessageSalary: 0 })
+        this.setState({ errorResSalary: response.data.errorRes })
+        this.setState({ errorMessageSalary: response.data.message })
+        this.setState({ sendDataSalary: true })
+    }
+
+    // eslint-disable-next-line no-dupe-class-members
     componentDidMount() {
-        this.fetchCompanyDetails()
+        this.fetchEmployeeDetails()
     }
 
-    async fetchCompanyDetails() {
+    async fetchEmployeeDetails() {
 
         var apiHandler = new APIHandler();
-        var companydetails = await apiHandler.fetchCompanyDetails(this.props.match.params.id)
-        this.setState({ companyBank: companydetails.data.data.company_bank })
-        this.setState({ name: companydetails.data.data.name, license_no: companydetails.data.data.license_no, address: companydetails.data.data.address, contact_no: companydetails.data.data.contact_no, email: companydetails.data.data.email, description: companydetails.data.data.description })
+        var employeedetails = await apiHandler.fetchEmployeeById(this.props.match.params.id)
+        var employeesalary = await apiHandler.fetchSalaryEmployee(this.props.match.params.id)
+        var employeebank = await apiHandler.fetchBankEmployee(this.props.match.params.id)
+        this.setState({ employee: employeedetails.data.data, employeeBank: employeebank.data.data })
+        // this.setState({ employeeSalary: employeesalary.data.data })
+        console.log(employeesalary)
+        // this.setState({ name: companydetails.data.data.name, license_no: companydetails.data.data.license_no, joining_date: companydetails.data.data.joining_date, contact_no: companydetails.data.data.contact_no, email: companydetails.data.data.email, description: companydetails.data.data.description })
         this.setState({ dataLoaded: true })
 
-        console.log(companydetails)
+        // console.log(employeedetails)
     }
 
     AddCompanyBank = () => {
@@ -75,7 +91,7 @@ export class CompanyDetailsComponent extends Component {
                     <div className="row clearfix">
                         <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div className="card">
-                                {this.state.dataLoaded == false ? (
+                                {this.state.dataLoaded === false ? (
                                     <div className="text-center">
                                         <div className="preloader pl-size-xl">
                                             <div className="spinner-layer">
@@ -91,7 +107,7 @@ export class CompanyDetailsComponent extends Component {
                                 ) : ''}
                                 <div className="header">
                                     <h2>
-                                        Edit Company
+                                        Edit Employee
                                     </h2>
 
                                 </div>
@@ -100,49 +116,38 @@ export class CompanyDetailsComponent extends Component {
                                         <label htmlFor="name">Name</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="name" className="form-control" defaultValue={this.state.name} />
+                                                <input type="text" id="name" name="name" className="form-control" defaultValue={this.state.employee.name} />
                                             </div>
                                         </div>
-                                        <label htmlFor="license_no">License No.</label>
+                                        <label htmlFor="joining_date">Joining Date</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="license_no" className="form-control" placeholder="Enter License Number" defaultValue={this.state.license_no} />
+                                                <input type="text" id="joining_date" name="joining_date" className="form-control" placeholder="Enter License Number" defaultValue={this.state.employee.joining_date} />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="phone">Phone</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" id="phone" name="phone" className="form-control" placeholder="Enter joining_date" defaultValue={this.state.employee.phone} />
                                             </div>
                                         </div>
                                         <label htmlFor="address">Address</label>
                                         <div className="form-group">
                                             <div className="form-line">
-                                                <input type="text" id="address" className="form-control" placeholder="Enter Address" defaultValue={this.state.address} />
-                                            </div>
-                                        </div>
-                                        <label htmlFor="contact_no">Contact No.</label>
-                                        <div className="form-group">
-                                            <div className="form-line">
-                                                <input type="text" id="contact_no" className="form-control" placeholder="Enter Contact Number" defaultValue={this.state.contact_no} />
-                                            </div>
-                                        </div>
-                                        <label htmlFor="email">Email</label>
-                                        <div className="form-group">
-                                            <div className="form-line">
-                                                <input type="text" id="email" className="form-control" placeholder="Enter Company Email" defaultValue={this.state.email} />
-                                            </div>
-                                        </div>
-                                        <label htmlFor="description">Description</label>
-                                        <div className="form-group">
-                                            <div className="form-line">
-                                                <input type="text" id="description" className="form-control" placeholder="Enter Company Description" defaultValue={this.state.description} />
+                                                <input type="text" id="address" name="address" className="form-control" defaultValue={this.state.employee.address} />
                                             </div>
                                         </div>
 
+
                                         <br />
-                                        <button disabled={this.state.btnMessage == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage == 0 ? "Update Company" : "Updating Company Please Wait.."}</button>
+                                        <button disabled={this.state.btnMessage === 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessage === 0 ? "Update Employee" : "Updating Employee Please Wait.."}</button>
                                         <br />
-                                        {this.state.errorRes == false && this.state.sendData == true ? (
+                                        {this.state.errorRes === false && this.state.sendData === true ? (
                                             <div className="alert alert-success">
                                                 {this.state.errorMessage}
                                             </div>
                                         ) : ""}
-                                        {this.state.errorRes == true && this.state.sendData == true ? (
+                                        {this.state.errorRes === true && this.state.sendData === true ? (
                                             <div className="alert alert-danger">
                                                 {this.state.errorMessage}
                                             </div>
@@ -157,16 +162,28 @@ export class CompanyDetailsComponent extends Component {
                             <div className="card">
                                 <div className="header">
                                     <h2>
-                                        Account Details
+                                        Employee Salary
                                     </h2>
-                                    <div className="header-dropdown m-r--5">
-                                        <button onClick={this.AddCompanyBank} className="btn btn-info">Add Company Account</button>
-                                    </div>
-
+                                    <form onSubmit={this.addSalary}>
+                                        <label htmlFor="salary_date">Salary Date</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="date" name="salary_date" id="salary_date" className="form-control" placeholder="Enter Name" />
+                                            </div>
+                                        </div>
+                                        <label htmlFor="salary_amount">Salary Amount</label>
+                                        <div className="form-group">
+                                            <div className="form-line">
+                                                <input type="text" name="salary_amount" id="salary_amount" className="form-control" placeholder="Enter Salary" />
+                                            </div>
+                                        </div>
+                                        <br />
+                                        <button disabled={this.state.btnMessageSalary == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessageSalary == 0 ? "Add Salary" : "Adding Salary Please Wait.."}</button>
+                                    </form>
 
                                 </div>
                                 <div className="body table-responsive">
-                                    {this.state.dataLoaded == false ? (
+                                    {this.state.dataLoadedSalary === false ? (
                                         <div className="text-center">
                                             <div className="preloader pl-size-xl">
                                                 <div className="spinner-layer">
@@ -184,19 +201,19 @@ export class CompanyDetailsComponent extends Component {
                                         <thead>
                                             <tr>
                                                 <th>#</th>
-                                                <th>Account No.</th>
-                                                <th>IFC Code</th>
+                                                <th>Salary Date</th>
+                                                <th>Salary Amount</th>
+                                                <th>Added On</th>
                                             </tr>
                                         </thead>
                                         <tbody>
 
-                                            {this.state.companyBank.map((company) => (
-                                                <tr key={company.id}>
-                                                    <td>{company.id}</td>
-                                                    <td>{company.bank_account_no}</td>
-                                                    <td>{company.ifsc_no}</td>
-
-                                                    <td><button type="button" className="btn btn-danger waves-effect">DELETE</button></td>
+                                            {this.state.employeeSalary.map((salary) => (
+                                                <tr key={salary.id}>
+                                                    <td>{salary.id}</td>
+                                                    <td>{salary.salary_date}</td>
+                                                    <td>{salary.salary_date}</td>
+                                                    <td>{salary.added_on}</td>
 
                                                 </tr>
                                             ))}
@@ -213,4 +230,4 @@ export class CompanyDetailsComponent extends Component {
     }
 }
 
-export default CompanyDetailsComponent
+export default EmployeeDetailsComponent
