@@ -63,9 +63,14 @@ export class EmployeeDetailsComponent extends Component {
         var employeedetails = await apiHandler.fetchEmployeeById(this.props.match.params.id)
         var employeesalary = await apiHandler.fetchSalaryEmployee(this.props.match.params.id)
         var employeebank = await apiHandler.fetchBankEmployee(this.props.match.params.id)
-        this.setState({ employee: employeedetails.data.data, employeeBank: employeebank.data.data })
-        // this.setState({ employeeSalary: employeesalary.data.data })
-        console.log(employeesalary)
+        this.setState({ employee: employeedetails.data.data })
+        this.setState({ dataLoaded: true })
+
+        this.setState({ employeeSalary: employeesalary.data })
+        this.setState({ dataLoadedSalary: true })
+
+        this.setState({ employeeBank: employeebank.data })
+
         // this.setState({ name: companydetails.data.data.name, license_no: companydetails.data.data.license_no, joining_date: companydetails.data.data.joining_date, contact_no: companydetails.data.data.contact_no, email: companydetails.data.data.email, description: companydetails.data.data.description })
         this.setState({ dataLoaded: true })
 

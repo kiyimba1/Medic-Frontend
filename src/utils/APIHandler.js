@@ -149,7 +149,7 @@ class APIHandler {
     async addEmployeeSalaryData(employee_id, salary_date, salary_amount) {
         await this.checkLogin();
 
-        var response = await axios.post(Config.employeeApiUrl, { employee_id: employee_id, salary_date: salary_date, salary_amount: salary_amount }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        var response = await axios.post(Config.AllEmployeeSalaryApiUrl, { employee_id: employee_id, salary_date: salary_date, salary_amount: salary_amount }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
         return response
     }
 
