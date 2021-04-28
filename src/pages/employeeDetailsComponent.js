@@ -45,8 +45,8 @@ export class EmployeeDetailsComponent extends Component {
     async addSalary(event) {
         event.preventDefault();
         var apiHandler = new APIHandler();
-        var response = await apiHandler.addEmployeeSalaryData(this.props.match.params.id, event.target.salary_date, event.target.salary_amount);
-        console.log(event.target.salary_date)
+        var response = await apiHandler.addEmployeeSalaryData(this.props.match.params.id.value, event.target.salary_date.value, event.target.salary_amount.value);
+        // console.log(event.target.salary_date)
         this.setState({ btnMessageSalary: 0 })
         this.setState({ errorResSalary: response.data.errorRes })
         this.setState({ errorMessageSalary: response.data.message })
@@ -67,6 +67,7 @@ export class EmployeeDetailsComponent extends Component {
         this.setState({ employee: employeedetails.data.data })
         this.setState({ dataLoaded: true })
 
+        console.log(employeesalary)
         this.setState({ employeeSalary: employeesalary.data })
         this.setState({ dataLoadedSalary: true })
 

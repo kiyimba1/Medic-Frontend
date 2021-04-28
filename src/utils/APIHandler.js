@@ -142,15 +142,16 @@ class APIHandler {
     async updateEmployeeData(name, joining_date, phone, address, id) {
         await this.checkLogin();
 
-        var response = await axios.post(Config.employeeApiUrl, { name: name, joining_date: joining_date, phone: phone, address: address }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        var response = await axios.put(Config.employeeApiUrl + id + "/", { name: name, joining_date: joining_date, phone: phone, address: address }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
         return response
     }
 
-    async addEmployeeSalaryData(employee_id, salary_date, salary_amount) {
+    async addEmployeeSalaryData(id, date, amount) {
         await this.checkLogin();
 
-        var response = await axios.post(Config.AllEmployeeSalaryApiUrl, { employee_id: employee_id, salary_date: salary_date, salary_amount: salary_amount }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
+        var response = await axios.post(Config.AllEmployeeSalaryApiUrl, { employee_id: id, salary_date: date, salary_amount: amount }, { headers: { Authorization: "Bearer " + AuthHandler.getLoginToken() } })
         return response
+        // console.log(id, date, amount)
     }
 
 }
