@@ -46,6 +46,7 @@ export class EmployeeDetailsComponent extends Component {
         event.preventDefault();
         var apiHandler = new APIHandler();
         var response = await apiHandler.addEmployeeSalaryData(this.props.match.params.id, event.target.salary_date, event.target.salary_amount);
+        console.log(event.target.salary_date)
         this.setState({ btnMessageSalary: 0 })
         this.setState({ errorResSalary: response.data.errorRes })
         this.setState({ errorMessageSalary: response.data.message })
@@ -183,7 +184,7 @@ export class EmployeeDetailsComponent extends Component {
                                             </div>
                                         </div>
                                         <br />
-                                        <button disabled={this.state.btnMessageSalary == 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessageSalary == 0 ? "Add Salary" : "Adding Salary Please Wait.."}</button>
+                                        <button disabled={this.state.btnMessageSalary === 0 ? false : true} type="submit" className="btn btn-primary m-t-15 btn-block">{this.state.btnMessageSalary === 0 ? "Add Salary" : "Adding Salary Please Wait.."}</button>
                                     </form>
 
                                 </div>
