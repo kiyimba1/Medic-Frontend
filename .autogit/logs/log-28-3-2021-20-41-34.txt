@@ -1,0 +1,17 @@
+-------------------- Auto-Git Log --------------------
+		Wed Apr 28 2021 20:41:34 GMT+0300 (East Africa Time)
+------------------------------------------------------
+
+Modified files:
+* src/pages/employeeDetailsComponent.js
+* src/utils/APIHandler.js
+
+
+Created files:
+* .autogit/logs/log-28-3-2021-20-11-26.txt
+
+
+Deleted files:
+
+
+Renamed files:

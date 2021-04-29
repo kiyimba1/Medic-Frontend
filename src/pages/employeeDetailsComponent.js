@@ -46,7 +46,7 @@ export class EmployeeDetailsComponent extends Component {
         event.preventDefault();
         var apiHandler = new APIHandler();
         var response = await apiHandler.addEmployeeSalaryData(this.props.match.params.id.value, event.target.salary_date.value, event.target.salary_amount.value);
-        // console.log(event.target.salary_date)
+        console.log(response)
         this.setState({ btnMessageSalary: 0 })
         this.setState({ errorResSalary: response.data.errorRes })
         this.setState({ errorMessageSalary: response.data.message })
